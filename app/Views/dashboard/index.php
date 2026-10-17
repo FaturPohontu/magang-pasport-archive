@@ -1,46 +1,22 @@
+<?= $this->extend('layouts/main') ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard - Arsip Paspor</title>
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-</head>
-<body class="bg-light">
+<?= $this->section('content') ?>
+<h2>Dashboard Statistik</h2>
 
-<nav class="navbar navbar-dark bg-primary">
-    <div class="container">
-        <span class="navbar-brand fw-bold">Arsip Paspor</span>
-        <a href="<?= site_url('logout') ?>"
-           class="btn btn-outline-light btn-sm">
-            Logout
-        </a>
+<p>Selamat datang, <strong><?= session()->get('name') ?></strong>!</p>
+
+<div style="display: flex; gap: 15px; margin-top: 20px;">
+    <div style="border: 1px solid #ccc; padding: 15px; width: 30%;">
+        <h4>Paspor Hari Ini</h4>
+        <p style="font-size: 24px; font-weight: bold;">0</p>
     </div>
-</nav>
-
-<main class="container py-5">
-    <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body p-4">
-            <h2 class="fw-bold">
-                Selamat datang, <?= esc(session()->get('nama')) ?>!
-            </h2>
-            <p class="text-secondary">
-                Anda berhasil masuk ke sistem pengarsipan data paspor.
-            </p>
-
-            <hr>
-
-            <h5>Menu Utama</h5>
-            <p class="mb-0">
-                Fitur scan resi paspor akan kita bangun pada tahap berikutnya.
-            </p>
-        </div>
+    <div style="border: 1px solid #ccc; padding: 15px; width: 30%;">
+        <h4>WNI / WNA Hari Ini</h4>
+        <p>WNI: 0 | WNA: 0</p>
     </div>
-</main>
-
-</body>
-</html>
+    <div style="border: 1px solid #ccc; padding: 15px; width: 30%;">
+        <h4>Total Tahun 2026</h4>
+        <p style="font-size: 24px; font-weight: bold;">0</p>
+    </div>
+</div>
+<?= $this->endSection() ?>
