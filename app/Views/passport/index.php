@@ -1,31 +1,36 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<h2>Scan Resi Paspor & Input Data</h2>
+<h2>Scan Resi Paspor & Verifikasi Data</h2>
 
-<!-- 1. Form Upload & Scan OCR -->
+<!-- Section 1: Upload Image -->
 <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
-    <h3>1. Scan Resi Paspor</h3>
-    <form id="ocrForm" enctype="multipart/form-data">
+    <h3>1. Upload & Scan Gambar</h3>
+    <form id="formOcr" enctype="multipart/form-data">
         <input type="file" name="passport_image" accept="image/*" required>
-        <button type="button" onclick="processOCR()">Proses OCR</button>
+        <button type="button" id="btnScan" onclick="doOcrScan()">Mulai Scan OCR</button>
     </form>
+    <div id="loading" style="display:none; color: blue; margin-top: 10px;">
+        Sedang memproses Tesseract OCR, mohon tunggu...
+    </div>
 </div>
 
-<!-- 2. Form Validasi Data / Input Manual -->
+<!-- Section 2: Form Verifikasi & Input Manual -->
 <div style="border: 1px solid #ccc; padding: 15px;">
-    <h3>2. Validasi & Isi Data Paspor</h3>
+    <h3>2. Verifikasi / Isian Manual Data Paspor</h3>
+    <p><small>*Periksa kembali data berikut. Lengkapi secara manual jika terdapat informasi resi yang kurang jelas.</small></p>[cite: 1]
+
     <form action="<?= base_url('scan/save') ?>" method="post">
         <?= csrf_field() ?>
-        
+
         <div>
             <label>No. Paspor / Resi:</label><br>
-            <input type="text" name="nik_paspor" id="nik_paspor" required>
+            <input type="text" name="nik_paspor" id="nik_paspor" required style="width: 300px;">
         </div><br>
 
         <div>
             <label>Nama Lengkap:</label><br>
-            <input type="text" name="nama" id="nama" required>
+            <input type="text" name="nama" id="nama" required style="width: 300px;">
         </div><br>
 
         <div>
@@ -41,14 +46,25 @@
             <input type="date" name="tgl_lahir" id="tgl_lahir">
         </div><br>
 
-        <button type="submit">Simpan ke Spreadsheet</button>
+        <div>
+            <label>Mentahan Teks OCR (Untuk Referensi):</label><br>
+            <textarea id="raw_text" rows="4" style="width: 100%;" readonly></textarea>
+        </div><br>
+
+        <button type="submit">Simpan Data Ke Spreadsheet</button>
     </form>
 </div>
 
 <script>
-function processOCR() {
-    let formData = new FormData(document.getElementById('ocrForm'));
-    
+function doOcrScan() {
+    let form = document.getElementById('formOcr');
+    let formData = new FormData(form);
+    let loading = document.getElementById('loading');
+    let btnScan = document.getElementById('btnScan');
+
+    loading.style.display = 'block';
+    btnScan.disabled = true;
+
     fetch('<?= base_url('scan/process-ocr') ?>', {
         method: 'POST',
         body: formData,
@@ -56,20 +72,29 @@ function processOCR() {
             'X-Requested-With': 'XMLHttpRequest'
         }
     })
-    .then(response => response.json())
-    .then(result => {
-        if (result.status === 'success') {
-            // Otomatis isi form validasi dengan hasil scan
-            document.getElementById('nik_paspor').value = result.data.nik_paspor;
-            document.getElementById('nama').value = result.data.nama;
-            document.getElementById('kewarganegaraan').value = result.data.kewarganegaraan;
-            document.getElementById('tgl_lahir').value = result.data.tgl_lahir;
-            alert('Proses OCR Selesai! Silakan periksa kembali data.');
+    .then(res => res.json())
+    .then(res => {
+        loading.style.display = 'none';
+        btnScan.disabled = false;
+
+        if (res.status === 'success') {
+            // Otomatis inject data hasil scan Tesseract ke input form verifikasi
+            document.getElementById('nik_paspor').value = res.data.nik_paspor || '';
+            document.getElementById('nama').value = res.data.nama || '';
+            document.getElementById('kewarganegaraan').value = res.data.kewarganegaraan || 'WNI';
+            document.getElementById('tgl_lahir').value = res.data.tgl_lahir || '';
+            document.getElementById('raw_text').value = res.data.raw_text || '';
+            
+            alert('Scan OCR Berhasil. Silakan verifikasi dan lengkapi data jika ada yang kurang.');
         } else {
-            alert(result.message);
+            alert(res.message);
         }
     })
-    .catch(error => alert('Terjadi kesalahan proses OCR.'));
+    .catch(err => {
+        loading.style.display = 'none';
+        btnScan.disabled = false;
+        alert('Terjadi kesalahan koneksi atau server OCR.');
+    });
 }
 </script>
 <?= $this->endSection() ?>

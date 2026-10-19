@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Libraries\OcrService;
+
 class HomeController extends BaseController
 {
     // 1. Menampilkan halaman Scan & Input Data
@@ -18,26 +20,40 @@ class HomeController extends BaseController
     {
         $file = $this->request->getFile('passport_image');
 
+        // 1. Validasi File Unggahan
         if (!$file || !$file->isValid()) {
             return $this->response->setJSON([
                 'status'  => 'error',
-                'message' => 'Gagal mengunggah berkas gambar.'
+                'message' => 'File gambar tidak valid atau tidak ditemukan.'
             ]);
         }
 
-        // TODO: Eksekusi OCR Engine / Script Python / API OCR di sini
-        // Contoh data dummy respon hasil scan OCR:
-        $ocrData = [
-            'nik_paspor'  => 'A12345678',
-            'nama'        => 'JOHN DOE',
-            'kewarganegaraan' => 'WNI', // WNI atau WNA
-            'tgl_lahir'   => '1995-05-20',
-        ];
+        // 2. Simpan sementara gambar di folder writable/uploads
+        $newName = $file->getRandomName();
+        $file->move(WRITEPATH . 'uploads', $newName);
+        $fullPath = WRITEPATH . 'uploads/' . $newName;
 
-        return $this->response->setJSON([
-            'status' => 'success',
-            'data'   => $ocrData
-        ]);
+        // 3. Jalankan OCR Service
+        $ocrService = new OcrService();
+        $result = $ocrService->scanImage($fullPath);
+
+        // 4. Hapus berkas temporary setelah selesai dibaca
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
+        }
+
+        // 5. Kembalikan hasil ke Frontend/AJAX
+        if ($result['status'] === true) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'data'   => $result['data']
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => 'Gagal membaca gambar: ' . $result['error']
+            ]);
+        }
     }
 
     // 3. Menyimpan data hasil validasi/input manual ke Google Sheets
