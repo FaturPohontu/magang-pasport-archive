@@ -1,0 +1,168 @@
+/* Import Font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.dashboard-wrapper {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fe;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+/* Header Banner Biru */
+.header-hero {
+    background: radial-gradient(circle at top right, #0a54d6 0%, #032b85 60%, #011852 100%);
+    color: #ffffff;
+    padding: 35px 40px 60px 40px;
+    border-radius: 0 0 24px 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Watermark Logo Raksasa di Banner Header */
+.header-hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    transform: translateY(-50%);
+    width: 450px;
+    height: 450px;
+    background-image: url('../img/logo-imigrasi.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.brand-logo {
+    width: 50px;
+    height: auto;
+}
+
+.brand-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.brand-subtitle {
+    font-size: 0.78rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* Tombol SCAN Top-Right */
+.scan-btn {
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+.scan-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.scan-icon {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 2px;
+}
+
+/* Ucapan Selamat Datang */
+.welcome-box {
+    margin-top: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-label {
+    font-size: 0.95rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 2px;
+}
+
+.welcome-name {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Container Putih Pengalas Card (Overlapping Header) */
+.content-sheet {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 32px;
+    margin: -35px 30px 0 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 2;
+}
+
+/* Base Card Style */
+.stat-card {
+    border-radius: 18px;
+    padding: 28px 24px;
+    color: #ffffff;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-val {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-txt {
+    font-size: 0.95rem;
+    font-weight: 400;
+    opacity: 0.95;
+    margin: 0;
+}
+
+/* Card 1: Kuning-Emas Gradient (Sesuai Gambar) */
+.card-gold {
+    background: linear-gradient(135deg, #ffc837 0%, #ff8008 100%);
+}
+
+/* Card 2: Hijau-Teal Gradient (WNI / WNA) */
+.card-teal {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.wni-wna-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+/* Card 3: Biru Tua Gradient (Sesuai Gambar) */
+.card-blue {
+    background: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #002776 100%);
+}
