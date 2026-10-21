@@ -59,16 +59,21 @@ class HomeController extends BaseController
     // 3. Menyimpan data hasil validasi/input manual ke Google Sheets
     public function saveToSheet()
     {
-        $postData = $this->request->getPost();
+        $postData = [
+            'kode_permohonan'  => $this->request->getPost('kode_permohonan'),
+            'nama_billing'     => $this->request->getPost('nama_billing'),
+            'tgl_lahir'        => $this->request->getPost('tgl_lahir'),
+            'jenis_permohonan' => $this->request->getPost('jenis_permohonan'),
+            'dicetak_tanggal'  => $this->request->getPost('dicetak_tanggal'),
+        ];
 
-        // Validasi input
-        if (empty($postData['nik_paspor']) || empty($postData['nama'])) {
-            return redirect()->back()->with('error', 'Data paspor tidak lengkap.')->withInput();
+        if (empty($postData['kode_permohonan']) || empty($postData['nama_billing'])) {
+            return redirect()->back()->with('error', 'Kode Permohonan dan Nama Billing wajib diisi!')->withInput();
         }
 
-        // TODO: Panggil Google Sheets Service/Library di sini untuk append data
-        // GoogleSheetService::appendRow($postData);
+        // TODO: Kirim $postData ke Google Sheet Service
+        // GoogleSheetService::appendRow(array_values($postData));
 
-        return redirect()->to('/scan')->with('success', 'Data paspor berhasil disimpan ke Spreadsheet!');
+        return redirect()->to('/scan')->with('success', 'Data resi permohonan berhasil disimpan ke Spreadsheet!');
     }
 }
