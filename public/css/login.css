@@ -1,66 +1,101 @@
-* {
+
+/* ===== PENGATURAN DASAR ===== */
+*,
+*::before,
+*::after {
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 
-body {
-    background: radial-gradient(circle at center, #0a54d6 0%, #032b85 60%, #011852 100%);
-    min-height: 100vh;
+html {
+    width: 100%;
+    min-height: 100%;
     margin: 0;
+}
+
+body {
+    background: radial-gradient(
+        circle at center,
+        #0a54d6 0%,
+        #032b85 60%,
+        #011852 100%
+    );
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    padding: 20px 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     position: relative;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
-/* Watermark Logo Raksasa di Tengah */
+/* ===== WATERMARK LOGO ===== */
 body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 650px;
-    height: 650px;
-    background-image: url('../img/logo-imigrasi.png'); /* Menggunakan path relatif ke folder img */
+
+    width: min(650px, 90vw);
+    height: min(650px, 90vw);
+
+    background-image: url('../img/logo-imigrasi.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+
     opacity: 0.15;
     pointer-events: none;
     z-index: 0;
 }
 
-/* Pembungkus Utama */
+/* ===== PEMBUNGKUS UTAMA ===== */
 .login-wrapper {
     width: 100%;
-    max-width: 400px;
+    max-width: 440px;
+    min-width: 0;
+
     padding: 20px;
+    margin: auto;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     position: relative;
     z-index: 1;
 }
 
+/* ===== HEADER ===== */
 .header-box {
+    width: 100%;
+    max-width: 100%;
     text-align: center;
     color: #ffffff;
     margin-bottom: 24px;
 }
 
 .header-box img {
+    display: block;
     width: 85px;
+    max-width: 100%;
     height: auto;
-    margin-bottom: 12px;
+    margin: 0 auto 12px;
 }
 
 .header-box h4 {
     font-weight: 700;
-    margin: 0 0 4px 0;
+    margin: 0 0 4px;
     font-size: 1.3rem;
     letter-spacing: 1px;
+    overflow-wrap: anywhere;
 }
 
 .header-box p {
@@ -68,20 +103,28 @@ body::before {
     font-size: 0.82rem;
     font-weight: 300;
     opacity: 0.85;
+    overflow-wrap: anywhere;
 }
 
+/* ===== KARTU LOGIN ===== */
 .login-card {
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
     padding: 32px 28px;
 }
 
+/* ===== JUDUL ===== */
 .text-navy {
     color: #0a1b4d;
 }
 
+/* ===== LABEL FORM ===== */
 .form-label {
     color: #0a1b4d;
     font-weight: 600;
@@ -90,14 +133,20 @@ body::before {
     display: block;
 }
 
+/* ===== INPUT ===== */
 .custom-input {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
     background-color: #edf3fe !important;
     border: 1.5px solid #2860c8 !important;
     border-radius: 8px !important;
+
     padding: 10px 14px !important;
     font-size: 0.9rem !important;
     color: #0a1b4d !important;
-    width: 100%;
 }
 
 .custom-input:focus {
@@ -107,20 +156,81 @@ body::before {
     outline: none;
 }
 
+/* ===== TOMBOL MASUK ===== */
 .btn-navy {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+
     background-color: #0a1b4d !important;
     color: #ffffff !important;
     border: none !important;
     border-radius: 8px !important;
+
     padding: 12px !important;
     font-weight: 700 !important;
     font-size: 0.9rem !important;
     letter-spacing: 0.5px;
-    width: 100%;
+
     cursor: pointer;
     margin-top: 10px;
 }
 
 .btn-navy:hover {
     background-color: #050d28 !important;
+}
+
+/* ===== RESPONSIVE HP ===== */
+@media (max-width: 576px) {
+    body {
+        padding: 16px 0;
+        align-items: center;
+    }
+
+    .login-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px;
+        margin: auto;
+    }
+
+    .header-box {
+        margin-bottom: 20px;
+    }
+
+    .header-box img {
+        width: 72px;
+    }
+
+    .header-box h4 {
+        font-size: 1.2rem;
+    }
+
+    .header-box p {
+        font-size: 0.75rem;
+    }
+
+    .login-card {
+        padding: 24px 20px;
+        border-radius: 14px;
+    }
+
+    .login-card h4 {
+        font-size: 1.15rem;
+    }
+}
+
+/* ===== HP DENGAN LAYAR SANGAT KECIL ===== */
+@media (max-width: 360px) {
+    .login-wrapper {
+        padding: 12px;
+    }
+
+    .login-card {
+        padding: 20px 16px;
+    }
+
+    .header-box p {
+        font-size: 0.7rem;
+    }
 }

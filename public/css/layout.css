@@ -1,0 +1,147 @@
+
+body {
+    margin: 0;
+    background: #f4f7fb;
+    color: #263449;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Sidebar Bootstrap */
+.sidebar-panel {
+    width: 280px !important;
+    max-width: 85vw;
+    background: #172b4d;
+    color: #fff;
+}
+
+.sidebar-heading {
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-heading h5 {
+    margin-bottom: 5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-heading small {
+    color: #bdcbe0;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 20px 16px 10px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow-wrap: anywhere;
+}
+
+.user-info small {
+    color: #bdcbe0;
+}
+
+.user-info strong {
+    color: #fff;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 10px;
+    color: #e6edf7;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.sidebar-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.sidebar-footer {
+    padding: 16px 20px;
+    color: #bdcbe0;
+    font-size: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Konten utama tidak bergeser */
+.main-content {
+    width: 100%;
+    min-width: 0;
+    min-height: 100vh;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 76px;
+    padding: 14px 28px;
+    background: #fff;
+    border-bottom: 1px solid #e8edf4;
+}
+
+.topbar strong {
+    color: #172b4d;
+    font-size: 15px;
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 1px solid #dce4ee;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.menu-toggle:hover {
+    background: #f0f5fb;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: #172b4d;
+}
+
+.page-content {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 28px;
+}
+
+@media (max-width: 576px) {
+    .topbar {
+        min-height: 66px;
+        padding: 10px 15px;
+    }
+
+    .page-content {
+        padding: 18px 14px;
+    }
+}
