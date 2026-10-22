@@ -1,0 +1,719 @@
+
+/* =========================================
+   SIPASKANIM - HALAMAN SCAN RESI PASPOR
+   Bootstrap 5 + Custom CSS
+========================================= */
+
+/* =========================================
+   1. PENGATURAN HALAMAN
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Header layout tetap muncul */
+.main-content:has(.sipascanim-screen) > .topbar {
+    display: flex;
+}
+
+/* Konten menggunakan seluruh lebar yang tersedia */
+.main-content:has(.sipascanim-screen) > .page-content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Halaman scan */
+.sipascanim-screen {
+    --scan-navy: #172b4d;
+    --scan-dark: #00172f;
+    --scan-light: #edf3ff;
+    --scan-gold: #ffb832;
+
+    width: 100%;
+    max-width: none;
+    min-height: calc(100vh - 60px);
+    margin: 0;
+    padding: 0;
+
+    background: #edf3ff;
+    color: var(--scan-navy);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Area konten memenuhi lebar layar */
+.scan-app-body {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 24px;
+}
+
+/* Pastikan area upload memenuhi lebar */
+.scan-upload-section,
+.scan-dropzone,
+.scan-report-card {
+    width: 100%;
+    max-width: none;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 576px) {
+    .scan-app-body {
+        padding: 14px;
+    }
+}
+
+/* =========================================
+   2. AREA UPLOAD GAMBAR
+========================================= */
+
+.scan-upload-section {
+    width: 100%;
+    margin-bottom: 48px;
+}
+
+.scan-dropzone {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 340px;
+
+    overflow: hidden;
+    border: 1px solid #b9c9e7;
+    border-radius: 4px;
+
+    background: var(--scan-dark);
+    color: #fff;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.scan-dropzone:hover,
+.scan-dropzone.drag-over {
+    border: 2px dashed #ffbf48;
+    background: #263449;
+}
+
+.scan-dropzone:focus-visible {
+    outline: 3px solid #ffbf48;
+    outline-offset: 3px;
+}
+
+/* Isi area upload */
+
+.dropzone-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.upload-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 12px;
+
+    border-radius: 50%;
+    background: #172b4d;
+    color: #b8c9e2;
+
+    font-size: 25px;
+}
+
+.dropzone-content p {
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.dropzone-content small {
+    display: block;
+    margin-top: 8px;
+    color: #b8c9e2;
+    font-size: 11px;
+}
+
+/* Preview gambar */
+
+.upload-preview {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.upload-preview[hidden] {
+    display: none;
+}
+
+/* Tampilan kamera */
+
+.scan-webcam {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+/* Informasi foto */
+
+.camera-preview-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 10px;
+
+    color: #166534;
+    font-size: 12px;
+}
+
+/* =========================================
+   3. TOMBOL AKSI BOOTSTRAP
+========================================= */
+
+.scan-action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 520px;
+
+    margin: 12px auto 0;
+}
+
+/* Bentuk dasar tombol */
+
+.scan-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 43px;
+    padding: 10px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.scan-btn i {
+    font-size: 16px;
+}
+
+/* Tombol buka kamera - biru tua */
+
+.scan-btn-camera {
+    background: #172b4d;
+    border-color: #082b80;
+    color: #fff;
+}
+
+.scan-btn-camera:hover,
+.scan-btn-camera:focus {
+    background: #172b4d;
+    border-color: #123b9d;
+    color: #fff;
+}
+
+/* Tombol upload - biru muda */
+
+.scan-btn-upload {
+    background: #d7e4ff;
+    border-color: #819bd0;
+    color: #172b4d;
+}
+
+.scan-btn-upload:hover,
+.scan-btn-upload:focus {
+    background: #c5d7ff;
+    border-color: #819bd0;
+    color: #172b4d;
+}
+
+/* Tombol ambil foto */
+
+.scan-btn-capture {
+    grid-column: 1 / -1;
+    background: #e6edfb;
+    border-color: #91a9e5;
+    color: #172b4d;
+}
+
+.scan-btn-capture:hover,
+.scan-btn-capture:focus {
+    background: #d5e2fa;
+    border-color: #819bd0;
+    color: #172b4d;
+}
+
+/* Tombol proses OCR - krem */
+
+.scan-btn-ocr {
+    grid-column: 1 / -1;
+
+    background: #ffebc8;
+    border-color: #d3b47e;
+    color: #172b4d;
+}
+
+.scan-btn-ocr:hover:not(:disabled),
+.scan-btn-ocr:focus:not(:disabled) {
+    background: #ffe2a9;
+    border-color: #d3b47e;
+    color: #172b4d;
+}
+
+.scan-btn-ocr:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Indikator proses OCR */
+
+.scan-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 15px;
+
+    color: #172b4d;
+    font-size: 12px;
+}
+
+/* =========================================
+   4. PANEL DATA LAPORAN
+========================================= */
+
+.scan-report-card {
+    width: 100%;
+    overflow: hidden;
+
+    border: 1px solid #9bb8ff;
+    border-radius: 16px;
+
+    background: #fff;
+}
+
+/* Header panel Data Laporan */
+
+.scan-report-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-height: 43px;
+    padding: 11px 20px;
+
+    background: #172b4d;
+    color: #fff;
+}
+
+.scan-report-header i {
+    font-size: 20px;
+}
+
+.scan-report-header h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Form data */
+
+.scan-report-form {
+    width: 100%;
+    padding: 18px;
+}
+
+.scan-field {
+    min-width: 0;
+    margin-bottom: 12px;
+}
+
+.scan-field label,
+.scan-raw-section label {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #172b4d;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================================
+   5. INPUT BOOTSTRAP
+========================================= */
+
+.scan-input {
+    display: block;
+    width: 100%;
+    min-height: 36px;
+    padding: 6px 10px;
+
+    border: 1px solid #91a9e5;
+    border-radius: 10px;
+
+    background: #edf3ff;
+    color: #172b4d;
+
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.scan-input:focus {
+    border-color: #082b80;
+    background: #fff;
+    color: #172b4d;
+
+    box-shadow: 0 0 0 0.2rem rgba(8, 43, 128, 0.12);
+    outline: 0;
+}
+
+/* =========================================
+   6. GRID FORM
+========================================= */
+
+.scan-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* =========================================
+   7. PILIHAN JENIS PERMOHONAN
+========================================= */
+
+.scan-type-buttons {
+    display: flex;
+    width: 100%;
+    min-height: 36px;
+
+    overflow: hidden;
+
+    border: 1px solid #91a9e5;
+    border-radius: 10px;
+}
+
+.scan-type-btn {
+    flex: 1;
+    min-width: 0;
+
+    padding: 6px 5px;
+
+    border: 0;
+    background: #edf3ff;
+    color: #172b4d;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.scan-type-btn:hover {
+    background: #d7e4ff;
+}
+
+.scan-type-btn.active {
+    background: #172b4d;
+    color: #fff;
+}
+
+.scan-type-btn:focus-visible {
+    position: relative;
+    z-index: 1;
+    outline: 2px solid #ffb832;
+    outline-offset: -3px;
+}
+
+/* =========================================
+   8. TANGGAL DAN TOMBOL SIMPAN
+========================================= */
+
+.scan-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    align-items: end;
+    gap: 12px;
+}
+
+/* Tombol simpan - emas */
+
+.scan-save-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 36px;
+    margin-bottom: 12px;
+    padding: 7px 12px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #ffb832;
+    color: #172b4d;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.scan-save-btn:hover {
+    background: #ffc653;
+    color: #172b4d;
+}
+
+.scan-save-btn:active {
+    transform: translateY(1px);
+}
+
+/* =========================================
+   9. HASIL TEKS OCR
+========================================= */
+
+.scan-raw-section {
+    margin-top: 5px;
+}
+
+.scan-raw-text {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    padding: 10px;
+
+    border: 1px solid #91a9e5;
+    border-radius: 9px;
+
+    background: #edf3ff;
+    color: #172b4d;
+
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+.scan-raw-text:focus {
+    border-color: #172b4d;
+    box-shadow: 0 0 0 0.2rem rgba(8, 43, 128, 0.12);
+    outline: 0;
+}
+
+/* =========================================
+   10. RESPONSIVE TABLET DAN DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+    .scan-app-body {
+        padding: 28px 32px 40px;
+    }
+
+    .scan-dropzone {
+        min-height: 400px;
+    }
+
+    .scan-upload-section {
+        margin-bottom: 40px;
+    }
+
+    .scan-report-form {
+        padding: 22px 25px;
+    }
+
+    .scan-input {
+        min-height: 38px;
+    }
+
+    .scan-type-buttons {
+        min-height: 38px;
+    }
+
+    .scan-type-btn {
+        font-size: 11px;
+    }
+}
+
+/* =========================================
+   11. RESPONSIVE HP
+========================================= */
+
+@media (max-width: 576px) {
+    .sipascanim-screen {
+        width: 100%;
+        margin: 0;
+    }
+
+    .scan-app-body {
+        padding: 18px 14px 25px;
+    }
+
+    .scan-dropzone {
+        min-height: 280px;
+    }
+
+    .dropzone-content {
+        padding: 18px 12px;
+    }
+
+    .dropzone-content p {
+        font-size: 12px;
+    }
+
+    .dropzone-content small {
+        font-size: 10px;
+    }
+
+    .scan-upload-section {
+        margin-bottom: 38px;
+    }
+
+    .scan-action-buttons {
+        gap: 8px;
+    }
+
+    .scan-btn {
+        min-height: 42px;
+        padding: 9px 7px;
+        gap: 6px;
+        font-size: 11px;
+    }
+
+    .scan-btn i {
+        font-size: 15px;
+    }
+
+    .scan-report-card {
+        border-radius: 12px;
+    }
+
+    .scan-report-header {
+        padding: 11px 14px;
+    }
+
+    .scan-report-form {
+        padding: 14px 11px;
+    }
+
+    .scan-form-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .scan-field label,
+    .scan-raw-section label {
+        font-size: 10px;
+    }
+
+    .scan-input {
+        min-height: 35px;
+        padding: 5px 7px;
+        font-size: 11px;
+    }
+
+    .scan-type-buttons {
+        min-height: 35px;
+    }
+
+    .scan-type-btn {
+        padding: 5px 2px;
+        font-size: 9px;
+    }
+
+    .scan-bottom-grid {
+        grid-template-columns: 1fr 0.8fr;
+        gap: 8px;
+    }
+
+    .scan-save-btn {
+        min-height: 35px;
+        font-size: 11px;
+    }
+}
+
+/* =========================================
+   12. RESPONSIVE HP KECIL
+========================================= */
+
+@media (max-width: 360px) {
+    .scan-app-body {
+        padding: 14px 9px 20px;
+    }
+
+    .scan-dropzone {
+        min-height: 240px;
+    }
+
+    .scan-btn {
+        gap: 4px;
+        padding: 8px 4px;
+        font-size: 10px;
+    }
+
+    .scan-report-form {
+        padding: 12px 8px;
+    }
+
+    .scan-form-grid {
+        gap: 6px;
+    }
+
+    .scan-type-btn {
+        font-size: 8px;
+    }
+
+    .scan-bottom-grid {
+        grid-template-columns: 1fr 0.75fr;
+        gap: 6px;
+    }
+}
+
+/* =========================================
+   13. AKSESIBILITAS
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .scan-dropzone,
+    .scan-btn,
+    .scan-type-btn,
+    .scan-save-btn {
+        transition: none;
+    }
+}

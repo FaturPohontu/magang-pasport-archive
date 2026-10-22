@@ -1,4 +1,11 @@
 
+/* ==============================
+   DASAR HALAMAN
+============================== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     background: #f4f7fb;
@@ -7,46 +14,117 @@ body {
     overflow-x: hidden;
 }
 
-/* Sidebar Bootstrap */
+/* ==============================
+   SIDEBAR BOOTSTRAP OFFCANVAS
+============================== */
 .sidebar-panel {
     width: 280px !important;
     max-width: 85vw;
     background: #172b4d;
     color: #fff;
+    border: none;
 }
 
 .sidebar-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     padding: 24px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.sidebar-brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: rgba(217, 182, 111, 0.14);
+    color: #d9b66f;
+    font-size: 27px;
+}
+
 .sidebar-heading h5 {
-    margin-bottom: 5px;
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
 
 .sidebar-heading small {
     color: #bdcbe0;
+    font-size: 11px;
 }
 
+.sidebar-heading .btn-close {
+    flex-shrink: 0;
+}
+
+/* ==============================
+   INFORMASI PENGGUNA
+============================== */
 .user-info {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin: 20px 16px 10px;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 16px 24px;
     padding: 15px;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.08);
     overflow-wrap: anywhere;
 }
 
+.user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: #d9b66f;
+    font-size: 25px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
 .user-info small {
     color: #bdcbe0;
+    font-size: 12px;
 }
 
 .user-info strong {
     color: #fff;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+/* ==============================
+   NAVIGASI SIDEBAR
+============================== */
+.menu-label {
+    margin: 0 14px 12px;
+    color: #91a6c4;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
 }
 
 .sidebar-nav {
@@ -58,27 +136,68 @@ body {
 .sidebar-link {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 13px;
     padding: 13px 14px;
     border-radius: 10px;
     color: #e6edf7;
     text-decoration: none;
-    transition: background 0.2s ease;
+    font-size: 14px;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
-.sidebar-link:hover {
+.sidebar-link > i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 23px;
+    flex-shrink: 0;
+    font-size: 19px;
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus-visible {
     color: #fff;
     background: rgba(255, 255, 255, 0.12);
 }
 
+.sidebar-link:focus-visible {
+    outline: 2px solid #d9b66f;
+    outline-offset: 2px;
+}
+
+.sidebar-divider {
+    margin: 12px 4px;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.logout-link:hover {
+    background: rgba(220, 53, 69, 0.2);
+    color: #ffbfc5;
+}
+
+/* ==============================
+   FOOTER SIDEBAR
+============================== */
 .sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     padding: 16px 20px;
     color: #bdcbe0;
     font-size: 12px;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Konten utama tidak bergeser */
+.sidebar-footer i {
+    color: #d9b66f;
+    font-size: 16px;
+}
+
+/* ==============================
+   KONTEN UTAMA
+============================== */
 .main-content {
     width: 100%;
     min-width: 0;
@@ -96,52 +215,112 @@ body {
     padding: 14px 28px;
     background: #fff;
     border-bottom: 1px solid #e8edf4;
+    box-shadow: 0 2px 8px rgba(25, 45, 80, 0.025);
 }
 
-.topbar strong {
+.topbar-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.topbar-title strong {
     color: #172b4d;
     font-size: 15px;
 }
 
+.topbar-title small {
+    color: #718096;
+    font-size: 12px;
+}
+
+/* ==============================
+   TOMBOL HAMBURGER
+============================== */
 .menu-toggle {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 5px;
     width: 44px;
     height: 44px;
-    padding: 10px;
+    flex-shrink: 0;
+    padding: 0;
     border: 1px solid #dce4ee;
     border-radius: 10px;
     background: #fff;
+    color: #172b4d;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
-.menu-toggle:hover {
+.menu-toggle i {
+    font-size: 29px;
+    line-height: 1;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
     background: #f0f5fb;
+    border-color: #c7d5e8;
+    color: #172b4d;
 }
 
-.menu-toggle span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    border-radius: 2px;
-    background: #172b4d;
-}
-
+/* ==============================
+   AREA KONTEN HALAMAN
+============================== */
 .page-content {
     width: 100%;
     max-width: 1500px;
+    min-width: 0;
     margin: 0 auto;
     padding: 28px;
 }
 
+/* ==============================
+   RESPONSIVE HP
+============================== */
 @media (max-width: 576px) {
+    .sidebar-panel {
+        width: 280px !important;
+    }
+
+    .sidebar-heading {
+        padding: 20px 16px;
+    }
+
     .topbar {
         min-height: 66px;
         padding: 10px 15px;
+        gap: 12px;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .menu-toggle i {
+        font-size: 27px;
+    }
+
+    .topbar-title strong {
+        font-size: 13px;
+    }
+
+    .topbar-title small {
+        font-size: 11px;
     }
 
     .page-content {
         padding: 18px 14px;
+    }
+}
+
+/* Menghormati pengaturan pengurangan animasi */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar-link,
+    .menu-toggle {
+        transition: none;
     }
 }
