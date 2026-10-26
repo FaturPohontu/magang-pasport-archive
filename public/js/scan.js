@@ -9,6 +9,17 @@ async function startCamera() {
     const btnStart = document.getElementById('btnStartCamera');
     const btnCapture = document.getElementById('btnCapture');
     const placeholder = document.getElementById('cameraPlaceholder');
+    
+    // Konfigurasi kamera agar menggunakan kamera utama (bukan ultra-wide) dengan resolusi HD
+    const constraints = {
+        video: {
+            facingMode: { exact: "environment" }, // Pakai kamera belakang utama
+            width: { ideal: 750 },
+            height: { ideal: 1500 },
+            advanced: [{ focusMode: "continuous" }] // Pakai auto-focus kontinu jika didukung
+        },
+        audio: false
+    };
 
     try {
         videoStream = await navigator.mediaDevices.getUserMedia({
