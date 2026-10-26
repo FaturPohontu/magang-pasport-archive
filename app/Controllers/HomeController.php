@@ -3,24 +3,19 @@
 namespace App\Controllers;
 
 use App\Libraries\OcrService;
+use App\Libraries\GoogleSheetService; // Import Service Google Sheet
 
 class HomeController extends BaseController
 {
-    // 1. Menampilkan halaman Scan & Input Data
     public function index()
     {
-        $data = [
-            'title' => 'Scan Resi Paspor'
-        ];
-        return view('passport/index', $data);
+        return view('passport/index', ['title' => 'Scan & Verifikasi Paspor']);
     }
 
-    // 2. Menerima upload foto resi dan menjalankan OCR
     public function processOcr()
     {
         $file = $this->request->getFile('passport_image');
 
-        // 1. Validasi File Unggahan
         if (!$file || !$file->isValid()) {
             return $this->response->setJSON([
                 'status'  => 'error',
@@ -28,21 +23,17 @@ class HomeController extends BaseController
             ]);
         }
 
-        // 2. Simpan sementara gambar di folder writable/uploads
         $newName = $file->getRandomName();
         $file->move(WRITEPATH . 'uploads', $newName);
         $fullPath = WRITEPATH . 'uploads/' . $newName;
 
-        // 3. Jalankan OCR Service
         $ocrService = new OcrService();
         $result = $ocrService->scanImage($fullPath);
 
-        // 4. Hapus berkas temporary setelah selesai dibaca
         if (file_exists($fullPath)) {
             unlink($fullPath);
         }
 
-        // 5. Kembalikan hasil ke Frontend/AJAX
         if ($result['status'] === true) {
             return $this->response->setJSON([
                 'status' => 'success',
@@ -56,24 +47,37 @@ class HomeController extends BaseController
         }
     }
 
-    // 3. Menyimpan data hasil validasi/input manual ke Google Sheets
     public function saveToSheet()
     {
-        $postData = [
-            'kode_permohonan'  => $this->request->getPost('kode_permohonan'),
-            'nama_billing'     => $this->request->getPost('nama_billing'),
-            'tgl_lahir'        => $this->request->getPost('tgl_lahir'),
-            'jenis_permohonan' => $this->request->getPost('jenis_permohonan'),
-            'dicetak_tanggal'  => $this->request->getPost('dicetak_tanggal'),
-        ];
+        // 1. Tangkap data dari form verifikasi sesuai urutan kolom Spreadsheet
+        $kodePermohonan  = $this->request->getPost('kode_permohonan');
+        $namaBilling     = $this->request->getPost('nama_billing');
+        $tglLahir        = $this->request->getPost('tgl_lahir');
+        $jenisPermohonan = $this->request->getPost('jenis_permohonan');
+        $dicetakTanggal  = $this->request->getPost('dicetak_tanggal');
 
-        if (empty($postData['kode_permohonan']) || empty($postData['nama_billing'])) {
+        // Validasi input wajib
+        if (empty($kodePermohonan) || empty($namaBilling)) {
             return redirect()->back()->with('error', 'Kode Permohonan dan Nama Billing wajib diisi!')->withInput();
         }
 
-        // TODO: Kirim $postData ke Google Sheet Service
-        // GoogleSheetService::appendRow(array_values($postData));
+        // 2. Susun data menjadi array searah dengan urutan kolom Google Sheets[cite: 1]
+        $rowArray = [
+            $kodePermohonan,
+            $namaBilling,
+            $tglLahir,
+            $jenisPermohonan,
+            $dicetakTanggal
+        ];
 
-        return redirect()->to('/scan')->with('success', 'Data resi permohonan berhasil disimpan ke Spreadsheet!');
+        // 3. Panggil GoogleSheetService
+        $sheetService = new GoogleSheetService();
+        $isSaved = $sheetService->appendRow($rowArray);
+
+        if ($isSaved) {
+            return redirect()->to('/scan')->with('success', 'Data resi permohonan berhasil disimpan ke Google Spreadsheet!');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menyimpan data ke Google Spreadsheet. Periksa koneksi/credentials.')->withInput();
+        }
     }
 }

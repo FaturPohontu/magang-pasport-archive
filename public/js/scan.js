@@ -10,8 +10,8 @@ async function startCamera() {
     const constraints = {
         video: {
             facingMode: { exact: "environment" }, // Pakai kamera belakang utama
-            width: { ideal: 400 },
-            height: { ideal: 400 },
+            width: { ideal: 750 },
+            height: { ideal: 1500 },
             advanced: [{ focusMode: "continuous" }] // Pakai auto-focus kontinu jika didukung
         },
         audio: false

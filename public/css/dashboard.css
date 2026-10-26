@@ -1,168 +1,585 @@
-/* Import Font Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ======================================
+   DASAR DASHBOARD
+====================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 .dashboard-wrapper {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f7fe;
-    min-height: 100vh;
-    padding-bottom: 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 32px 40px;
+    min-width: 0;
 }
 
-/* Header Banner Biru */
+/* ======================================
+   HEADER BIRU
+====================================== */
 .header-hero {
-    background: radial-gradient(circle at top right, #0a54d6 0%, #032b85 60%, #011852 100%);
-    color: #ffffff;
-    padding: 35px 40px 60px 40px;
-    border-radius: 0 0 24px 24px;
     position: relative;
     overflow: hidden;
+    padding: 30px 32px;
+    border-radius: 20px;
+    color: #fff;
+    background: linear-gradient(135deg, #0a54d6, #032b85 75%, #011852);
+    box-shadow: 0 8px 24px rgba(3, 43, 133, 0.15);
 }
 
-/* Watermark Logo Raksasa di Banner Header */
-.header-hero::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -50px;
-    transform: translateY(-50%);
-    width: 450px;
-    height: 450px;
-    background-image: url('../img/logo-imigrasi.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.15;
-    pointer-events: none;
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
 }
 
 .brand-logo {
-    width: 50px;
-    height: auto;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.brand-info {
+    min-width: 0;
 }
 
 .brand-title {
+    margin: 0 0 5px;
+    font-size: 1.3rem;
     font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 0.5px;
-    margin: 0;
+    letter-spacing: 0.7px;
 }
 
 .brand-subtitle {
-    font-size: 0.78rem;
-    opacity: 0.8;
     margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
 }
 
-/* Tombol SCAN Top-Right */
 .scan-btn {
-    border: 1.5px solid rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    padding: 8px 16px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 9px;
+    flex-shrink: 0;
+
+    padding: 11px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.13);
+    color: #fff;
     text-decoration: none;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 1px;
-    transition: all 0.2s ease;
+
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .scan-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff;
+    transform: translateY(-1px);
 }
 
 .scan-icon {
-    width: 22px;
-    height: 22px;
-    margin-bottom: 2px;
+    width: 20px;
+    height: 20px;
 }
 
-/* Ucapan Selamat Datang */
+/* ======================================
+   SAPAAN PENGGUNA
+====================================== */
 .welcome-box {
-    margin-top: 25px;
-    position: relative;
-    z-index: 1;
+    margin-top: 38px;
 }
 
 .welcome-label {
-    font-size: 0.95rem;
-    font-weight: 300;
-    opacity: 0.9;
-    margin-bottom: 2px;
+    margin: 0 0 5px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .welcome-name {
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
-/* Container Putih Pengalas Card (Overlapping Header) */
+.welcome-description {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+/* ======================================
+   AREA PUTIH
+====================================== */
 .content-sheet {
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 32px;
-    margin: -35px 30px 0 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    position: relative;
-    z-index: 2;
+    margin-top: 24px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #e9edf5;
+    border-radius: 20px;
+    box-shadow: 0 6px 24px rgba(20, 39, 80, 0.05);
 }
 
-/* Base Card Style */
+.section-heading {
+    margin-bottom: 24px;
+}
+
+.section-heading h2 {
+    margin: 0 0 6px;
+    color: #10234d;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #7b8498;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+
+/* ======================================
+   KARTU STATISTIK
+   DESKTOP: HORIZONTAL
+====================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+    align-items: stretch;
+}
+
 .stat-card {
-    border-radius: 18px;
-    padding: 28px 24px;
-    color: #ffffff;
-    min-height: 140px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    transition: transform 0.2s ease;
+    align-items: flex-start;
+    gap: 18px;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 220px;
+    padding: 24px;
+
+    border: 1px solid rgba(20, 39, 80, 0.06);
+    border-radius: 16px;
+    background: #fff;
+
+    box-shadow: 0 4px 15px rgba(20, 39, 80, 0.045);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .stat-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+    box-shadow: 0 9px 22px rgba(20, 39, 80, 0.09);
 }
 
-.stat-val {
-    font-size: 2.8rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 8px;
+.card-gold {
+    border-left: 5px solid #e4a11b;
+}
+
+.card-teal {
+    border-left: 5px solid #159b98;
+}
+
+.card-blue {
+    border-left: 5px solid #2458cc;
+}
+
+/* IKON */
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    border-radius: 13px;
+}
+
+.stat-icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.card-gold .stat-icon {
+    color: #b87a08;
+    background: #fff4d9;
+}
+
+.card-teal .stat-icon {
+    color: #087f7d;
+    background: #dff7f4;
+}
+
+.card-blue .stat-icon {
+    color: #2458cc;
+    background: #e8efff;
+}
+
+/* ISI KARTU */
+.stat-content {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
 }
 
 .stat-txt {
-    font-size: 0.95rem;
-    font-weight: 400;
-    opacity: 0.95;
+    margin: 0 0 8px;
+    color: #66718a;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.stat-val {
     margin: 0;
+    color: #10234d;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
 }
 
-/* Card 1: Kuning-Emas Gradient (Sesuai Gambar) */
-.card-gold {
-    background: linear-gradient(135deg, #ffc837 0%, #ff8008 100%);
+.stat-note {
+    display: block;
+    margin-top: 8px;
+    color: #8790a2;
+    font-size: 0.76rem;
+    line-height: 1.5;
 }
 
-/* Card 2: Hijau-Teal Gradient (WNI / WNA) */
-.card-teal {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-}
-
+/* WNI / WNA */
 .wni-wna-box {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 6px;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
 }
 
-/* Card 3: Biru Tua Gradient (Sesuai Gambar) */
-.card-blue {
-    background: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #002776 100%);
+.category-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #526079;
+    font-size: 0.85rem;
+}
+
+.category-item strong {
+    color: #10234d;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.category-divider {
+    width: 1px;
+    height: 28px;
+    background: #dce3ed;
+}
+
+/* ======================================
+   TABLET: KARTU VERTIKAL
+====================================== */
+
+@media (max-width: 768px) {
+    .dashboard-wrapper {
+        padding: 20px;
+    }
+
+    .header-hero {
+        padding: 26px 24px;
+        border-radius: 17px;
+    }
+
+    .brand-logo {
+        width: 54px;
+        height: 54px;
+    }
+
+    .brand-group {
+        gap: 12px;
+    }
+
+    .brand-title {
+        font-size: 1.15rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.76rem;
+    }
+
+    .content-sheet {
+        padding: 24px;
+    }
+
+    .stats-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .stat-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 18px;
+        min-height: 130px;
+        padding: 22px;
+    }
+
+    .stat-icon {
+        width: 54px;
+        height: 54px;
+    }
+
+    .stat-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .stat-note {
+        display: block;
+    }
+
+    .wni-wna-box {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .category-divider {
+        display: block;
+    }
+}
+
+/* ======================================
+   HP: KARTU VERTIKAL
+====================================== */
+
+@media (max-width: 576px) {
+    .dashboard-wrapper {
+        padding: 14px 12px 24px;
+    }
+
+    .header-hero {
+        padding: 22px 18px;
+        border-radius: 15px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .brand-group {
+        gap: 10px;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .brand-title {
+        font-size: 0.98rem;
+        letter-spacing: 0.3px;
+    }
+
+    .brand-subtitle {
+        font-size: 0.68rem;
+        line-height: 1.5;
+    }
+
+    .scan-btn {
+        padding: 9px;
+        gap: 5px;
+        font-size: 0.72rem;
+    }
+
+    .scan-icon {
+        width: 17px;
+        height: 17px;
+    }
+
+    .welcome-box {
+        margin-top: 28px;
+    }
+
+    .welcome-label {
+        font-size: 0.82rem;
+    }
+
+    .welcome-name {
+        font-size: 1.55rem;
+    }
+
+    .welcome-description {
+        font-size: 0.78rem;
+    }
+
+    .content-sheet {
+        margin-top: 16px;
+        padding: 18px 14px;
+        border-radius: 15px;
+    }
+
+    .section-heading {
+        margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+        font-size: 1.05rem;
+    }
+
+    .section-heading p {
+        font-size: 0.78rem;
+    }
+
+    /* Satu kartu per baris */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .stat-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+        min-height: 110px;
+        padding: 16px;
+        border-radius: 13px;
+    }
+
+    .stat-card:hover {
+        transform: none;
+    }
+
+    .stat-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 11px;
+    }
+
+    .stat-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .stat-txt {
+        font-size: 0.82rem;
+        margin-bottom: 5px;
+    }
+
+    .stat-val {
+        font-size: 1.6rem;
+    }
+
+    .stat-note {
+        font-size: 0.7rem;
+    }
+
+    .wni-wna-box {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .category-item {
+        gap: 6px;
+        font-size: 0.78rem;
+    }
+
+    .category-item strong {
+        font-size: 1.1rem;
+    }
+
+    .category-divider {
+        display: block;
+    }
+}
+
+/* ======================================
+   HP KECIL
+====================================== */
+
+@media (max-width: 360px) {
+    .dashboard-wrapper {
+        padding: 10px 8px 20px;
+    }
+
+    .header-hero {
+        padding: 18px 12px;
+    }
+
+    .brand-logo {
+        width: 34px;
+        height: 34px;
+    }
+
+    .brand-title {
+        font-size: 0.88rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.62rem;
+    }
+
+    .scan-btn {
+        padding: 7px;
+        font-size: 0.65rem;
+    }
+
+    .content-sheet {
+        padding: 14px 10px;
+    }
+
+    .stats-grid {
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 13px 10px;
+        gap: 12px;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .stat-icon svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .stat-txt {
+        font-size: 0.76rem;
+    }
+
+    .stat-val {
+        font-size: 1.4rem;
+    }
 }
