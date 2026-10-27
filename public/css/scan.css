@@ -1,0 +1,1136 @@
+
+/* =========================================================
+   1. VARIABEL WARNA DAN PENGATURAN DASAR
+========================================================= */
+
+.scan-page {
+    --scan-navy: #082b80;
+    --scan-dark: #00172f;
+    --scan-light: #edf3ff;
+    --scan-gold: #ffb832;
+
+    --scan-text: #263449;
+    --scan-muted: #748198;
+    --scan-border: #e3eaf3;
+    --scan-background: #f4f7fb;
+
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    margin: 0;
+    padding: 24px 30px;
+
+    color: var(--scan-text);
+    box-sizing: border-box;
+}
+
+.scan-page *,
+.scan-page *::before,
+.scan-page *::after {
+    box-sizing: border-box;
+}
+
+.scan-page img,
+.scan-page video,
+.scan-page canvas {
+    max-width: 100%;
+}
+
+.scan-page button,
+.scan-page input,
+.scan-page textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   2. HEADER HALAMAN
+========================================================= */
+
+.scan-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.scan-page-heading {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.scan-header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+    background: var(--scan-light);
+    color: var(--scan-navy);
+
+    font-size: 20px;
+}
+
+.scan-eyebrow {
+    color: var(--scan-navy);
+    letter-spacing: 1.5px;
+}
+
+.scan-page-title {
+    margin-top: 0;
+
+    color: var(--scan-dark);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 750;
+    line-height: 1.3;
+
+    overflow-wrap: anywhere;
+}
+
+.scan-page-description {
+    max-width: 720px;
+
+    color: var(--scan-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.scan-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    padding: 9px 13px;
+
+    border: 1px solid #d9e7ff;
+    border-radius: 30px;
+
+    background: #f0f5ff;
+    color: var(--scan-navy);
+
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   3. INDIKATOR TAHAP PROSES
+========================================================= */
+
+.scan-progress-section {
+    width: 100%;
+    min-width: 0;
+
+    margin-bottom: 24px;
+    padding: 22px;
+
+    border: 1px solid var(--scan-border);
+    border-radius: 12px;
+
+    background: #ffffff;
+}
+
+.scan-progress-title {
+    margin: 0 0 24px;
+
+    color: var(--scan-navy);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.scan-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.scan-progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    flex: 0 1 auto;
+    min-width: 75px;
+    gap: 8px;
+
+    color: #98a2b3;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.scan-progress-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+
+    border: 2px solid #d9e0eb;
+    border-radius: 50%;
+
+    background: #f4f6fa;
+    color: #98a2b3;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Tahap aktif */
+.scan-progress-step.active {
+    color: var(--scan-navy);
+}
+
+.scan-progress-step.active .scan-progress-number {
+    border-color: var(--scan-navy);
+    background: var(--scan-navy);
+    color: #ffffff;
+}
+
+/* Tahap selesai */
+.scan-progress-step.completed {
+    color: #198754;
+}
+
+.scan-progress-step.completed .scan-progress-number {
+    border-color: #198754;
+    background: #198754;
+    color: #ffffff;
+}
+
+/* Garis penghubung */
+.scan-progress-line {
+    flex: 1 1 auto;
+    min-width: 12px;
+    height: 3px;
+
+    margin: 0 8px 24px;
+
+    border-radius: 5px;
+    background: #e1e6ef;
+
+    transition: background 0.3s ease;
+}
+
+.scan-progress-line.completed {
+    background: #198754;
+}
+
+
+/* =========================================================
+   4. KARTU UTAMA
+========================================================= */
+
+.scan-card {
+    display: block;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    margin-bottom: 24px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--scan-border);
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    box-shadow: 0 5px 24px rgb(25 45 85 / 4%);
+}
+
+.scan-card-header {
+    padding: 20px 24px;
+
+    border-bottom: 1px solid var(--scan-border);
+    background: #ffffff;
+}
+
+.scan-card-header .d-flex {
+    min-width: 0;
+}
+
+.scan-card-header h5 {
+    color: var(--scan-dark);
+    font-size: 1.02rem;
+    font-weight: 750;
+    line-height: 1.5;
+}
+
+.scan-card-header p {
+    color: var(--scan-muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.scan-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+
+    border-radius: 13px;
+    background: var(--scan-light);
+    color: var(--scan-navy);
+
+    font-size: 21px;
+}
+
+.scan-card-icon-gold {
+    background: #fff5df;
+    color: #a66a00;
+}
+
+.scan-card .card-body {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   5. AREA KAMERA
+   Default laptop: portrait 3:4
+========================================================= */
+
+.scan-page .scan-camera-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 480px;
+    min-width: 0;
+
+    aspect-ratio: 3 / 4;
+    min-height: 0;
+
+    margin: 0 auto 24px;
+
+    overflow: hidden;
+
+    border: 1px solid #c8d5e8;
+    border-radius: 16px;
+
+    background: #07101f;
+}
+
+/* Video stream kamera */
+.scan-page .scan-webcam {
+    position: relative;
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+    max-height: none;
+
+    object-fit: contain;
+    background: #07101f;
+}
+
+/* Placeholder sebelum kamera aktif */
+.scan-page .scan-camera-placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    background: #f5f8fd;
+    color: var(--scan-text);
+
+    text-align: center;
+}
+
+.scan-page .scan-placeholder-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin-bottom: 16px;
+
+    border-radius: 18px;
+    background: var(--scan-light);
+    color: var(--scan-navy);
+
+    font-size: 30px;
+}
+
+.scan-page .scan-camera-placeholder h6 {
+    margin-bottom: 8px;
+
+    color: var(--scan-dark);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.scan-page .scan-camera-placeholder p {
+    max-width: 300px;
+    margin-bottom: 0;
+
+    color: var(--scan-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+/* Canvas hanya digunakan untuk memproses foto */
+.scan-page #canvas {
+    display: none;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   6. TOMBOL AMBIL FOTO BULAT
+========================================================= */
+
+.scan-page .scan-capture-button {
+    position: absolute;
+    z-index: 5;
+
+    bottom: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 66px;
+    height: 66px;
+    min-width: 66px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 5px solid rgb(255 255 255 / 85%);
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: var(--scan-navy);
+
+    box-shadow: 0 3px 14px rgb(0 0 0 / 35%);
+
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+.scan-page .scan-capture-button:hover {
+    background: #edf3ff;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
+}
+
+.scan-page .scan-capture-button:active {
+    transform: translateX(-50%) scale(0.92);
+}
+
+.scan-page .scan-capture-button:focus-visible {
+    outline: 3px solid var(--scan-gold);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   7. PREVIEW HASIL FOTO
+========================================================= */
+
+.scan-preview-container {
+    width: 100%;
+    max-width: 650px;
+    min-width: 0;
+
+    margin: 0 auto 24px;
+    padding: 18px;
+
+    border: 1px solid var(--scan-border);
+    border-radius: 14px;
+
+    background: #f9fbff;
+}
+
+.scan-preview-container h6 {
+    color: var(--scan-dark);
+}
+
+.scan-preview-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 120px;
+
+    overflow: hidden;
+
+    border: 1px solid #dfe6f0;
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
+.scan-photo-preview {
+    display: block;
+
+    width: 100%;
+    max-width: 650px;
+    max-height: 500px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   8. TOMBOL AKSI
+========================================================= */
+
+.scan-page .scan-camera-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    width: 100%;
+    gap: 10px;
+}
+
+.scan-page .scan-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 10px 18px;
+
+    border-radius: 9px;
+
+    font-size: 0.88rem;
+    font-weight: 650;
+    line-height: 1.4;
+
+    white-space: normal;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.scan-page .scan-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.scan-page .scan-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.scan-page .scan-btn:focus-visible {
+    outline: 3px solid rgb(8 43 128 / 25%);
+    outline-offset: 2px;
+}
+
+/* Tombol biru */
+.scan-page .btn-primary {
+    border-color: var(--scan-navy);
+    background: var(--scan-navy);
+    color: #ffffff;
+}
+
+.scan-page .btn-primary:hover {
+    border-color: #061f5d;
+    background: #061f5d;
+    color: #ffffff;
+}
+
+/* Tombol OCR */
+.scan-page .btn-warning {
+    border-color: var(--scan-gold);
+    background: var(--scan-gold);
+    color: #342300;
+}
+
+.scan-page .btn-warning:hover {
+    border-color: #efaa20;
+    background: #efaa20;
+    color: #342300;
+}
+
+/* Tombol simpan */
+.scan-page .scan-save-btn {
+    min-height: 48px;
+    padding: 12px 22px;
+}
+
+
+/* =========================================================
+   9. LOADING OCR
+========================================================= */
+
+.scan-page .scan-loading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    width: 100%;
+    padding: 16px;
+
+    border: 1px solid #d6e5ff;
+    border-radius: 12px;
+
+    background: #f2f7ff;
+    color: var(--scan-navy);
+}
+
+.scan-page .scan-loading small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--scan-muted);
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   10. INFORMASI FORMULIR
+========================================================= */
+
+.scan-page .scan-info-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    border: 1px solid #d6e5ff;
+    border-radius: 11px;
+
+    background: #f1f6ff;
+    color: var(--scan-navy);
+}
+
+.scan-page .scan-info-alert small {
+    color: #586985;
+    line-height: 1.7;
+}
+
+.scan-page .scan-form-label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #263449;
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+.scan-page .scan-input {
+    width: 100%;
+    min-height: 46px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d9e1ec;
+    border-radius: 9px;
+
+    background-color: #ffffff;
+    color: var(--scan-text);
+
+    font-size: 0.9rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.scan-page .scan-input::placeholder {
+    color: #a0aabc;
+}
+
+.scan-page .form-control:focus {
+    border-color: #7198e8;
+    box-shadow: 0 0 0 0.22rem rgb(8 43 128 / 10%);
+}
+
+.scan-page .form-text {
+    color: var(--scan-muted);
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   11. HASIL TEKS MENTAH OCR
+========================================================= */
+
+.scan-page .scan-ocr-section {
+    width: 100%;
+    min-width: 0;
+
+    padding: 20px;
+
+    border: 1px solid var(--scan-border);
+    border-radius: 12px;
+
+    background: #f8faff;
+}
+
+.scan-page .scan-raw-text {
+    display: block;
+
+    width: 100%;
+    min-height: 150px;
+
+    padding: 14px;
+
+    border: 1px solid #d9e1ec;
+    border-radius: 9px;
+
+    background: #ffffff;
+    color: #39475c;
+
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+
+    resize: vertical;
+}
+
+.scan-page .scan-raw-text:read-only {
+    background-color: #ffffff;
+}
+
+.scan-page .scan-ocr-section .badge {
+    padding: 7px 10px;
+
+    border-radius: 7px;
+
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   12. FOOTER FORMULIR
+========================================================= */
+
+.scan-page .scan-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid var(--scan-border);
+}
+
+.scan-page .scan-required-note {
+    color: var(--scan-muted);
+    font-size: 0.82rem;
+}
+
+.scan-page .scan-page-footer {
+    padding: 8px 0 18px;
+
+    color: var(--scan-muted);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+
+/* =========================================================
+   13. RESPONSIVE TABLET DAN LAPTOP KECIL
+========================================================= */
+
+@media (max-width: 991.98px) {
+    .scan-page {
+        padding: 20px;
+    }
+
+    .scan-card-header {
+        padding: 18px 20px;
+    }
+
+    .scan-page .scan-progress-section {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   14. RESPONSIVE HP
+========================================================= */
+
+@media (max-width: 575.98px) {
+
+    /* Konten halaman */
+    .scan-page {
+        padding: 14px;
+    }
+
+    /* Header */
+    .scan-page .scan-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .scan-page .scan-page-title {
+        font-size: 1.4rem;
+    }
+
+    .scan-page .scan-page-description {
+        font-size: 0.87rem;
+    }
+
+    .scan-page .scan-status-badge {
+        font-size: 0.75rem;
+    }
+
+    /* Kartu */
+    .scan-page .scan-card {
+        border-radius: 12px;
+    }
+
+    .scan-page .scan-card-header {
+        padding: 16px;
+    }
+
+    .scan-page .scan-card-header h5 {
+        font-size: 0.92rem;
+    }
+
+    .scan-page .scan-card-header p {
+        font-size: 0.78rem;
+    }
+
+    .scan-page .scan-card-icon {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+    /* Kamera landscape 16:9 */
+    .scan-page .scan-camera-wrapper {
+        width: 100%;
+        max-width: none;
+
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+
+        border-radius: 12px;
+    }
+
+    .scan-page .scan-webcam {
+        width: 100%;
+        height: 100%;
+
+        max-width: none;
+        max-height: none;
+
+        object-fit: contain;
+    }
+
+    .scan-page .scan-camera-placeholder {
+        padding: 12px;
+    }
+
+    .scan-page .scan-placeholder-icon {
+        width: 48px;
+        height: 48px;
+
+        margin-bottom: 10px;
+
+        border-radius: 14px;
+
+        font-size: 23px;
+    }
+
+    .scan-page .scan-camera-placeholder h6 {
+        font-size: 0.9rem;
+    }
+
+    .scan-page .scan-camera-placeholder p {
+        max-width: 260px;
+        font-size: 0.75rem;
+    }
+
+    /* Tombol foto bulat */
+    .scan-page .scan-capture-button {
+        bottom: 10px;
+
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+
+        border-width: 4px;
+
+        font-size: 23px;
+    }
+
+    /* Tombol aksi memenuhi lebar HP */
+    .scan-page .scan-camera-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .scan-page .scan-camera-actions .scan-btn {
+        width: 100%;
+    }
+
+    /* Preview foto */
+    .scan-page .scan-preview-container {
+        padding: 14px;
+    }
+
+    .scan-page .scan-photo-preview {
+        max-height: 350px;
+    }
+
+    /* Indikator proses */
+    .scan-page .scan-progress-section {
+        padding: 16px 10px;
+    }
+
+    .scan-page .scan-progress-title {
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .scan-page .scan-progress-step {
+        min-width: 0;
+        flex: 1 1 0;
+
+        gap: 6px;
+
+        font-size: 10px;
+    }
+
+    .scan-page .scan-progress-number {
+        flex-basis: 30px;
+        width: 30px;
+        height: 30px;
+
+        font-size: 12px;
+    }
+
+    .scan-page .scan-progress-line {
+        flex: 1 1 auto;
+        min-width: 5px;
+
+        margin: 0 3px 22px;
+    }
+
+    /* Formulir */
+    .scan-page .scan-form-label {
+        font-size: 0.85rem;
+    }
+
+    .scan-page .scan-input {
+        min-height: 44px;
+        font-size: 0.88rem;
+    }
+
+    /* Teks OCR */
+    .scan-page .scan-ocr-section {
+        padding: 14px;
+    }
+
+    .scan-page .scan-raw-text {
+        min-height: 130px;
+        font-size: 0.8rem;
+    }
+
+    /* Footer formulir */
+    .scan-page .scan-form-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .scan-page .scan-save-btn {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   15. AKSESIBILITAS
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .scan-page *,
+    .scan-page *::before,
+    .scan-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* =========================================
+   MEMPERBESAR LAYAR KAMERA DI HP
+========================================= */
+
+@media (max-width: 767.98px) {
+
+    /* Kurangi jarak tepi halaman */
+    .scan-page {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px !important;
+        margin: 0;
+    }
+
+    /* Kurangi padding card agar area kamera lebih luas */
+    .scan-card,
+    .scan-camera-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px !important;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* Area kamera memenuhi lebar container */
+    .scan-camera-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 65vh !important;
+        min-height: 380px !important;
+        max-height: 650px;
+        aspect-ratio: auto !important;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        border-radius: 14px;
+    }
+
+    /* Tampilan video kamera */
+    .scan-webcam {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        object-fit: cover !important;
+        display: block;
+    }
+
+    /* Placeholder sebelum kamera dibuka */
+    .scan-camera-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Tombol ambil foto tetap di tengah */
+    #btnCapture {
+        position: absolute;
+        left: 50%;
+        bottom: 16px;
+        transform: translateX(-50%);
+        z-index: 5;
+    }
+
+    /* Tombol kontrol menggunakan lebar yang tersedia */
+    .scan-camera-actions,
+    .scan-actions {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .scan-camera-actions button,
+    .scan-actions button {
+        flex: 1 1 auto;
+        min-height: 44px;
+    }
+
+    /* Preview foto mengikuti lebar layar */
+    #previewContainer {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #photoPreview {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+/* HP dengan layar sangat kecil */
+@media (max-width: 400px) {
+    .scan-page {
+        padding: 8px !important;
+    }
+
+    .scan-card,
+    .scan-camera-card {
+        padding: 8px !important;
+    }
+
+    .scan-camera-wrapper {
+        height: 60vh !important;
+        min-height: 340px !important;
+    }
+}
