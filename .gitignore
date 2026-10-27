@@ -127,3 +127,6 @@ _modules/*
 
 # File credential API Spreedsheet
 app/Config/credentials.json
+
+# Database files
+/writable/database/arsip_paspor.sql
