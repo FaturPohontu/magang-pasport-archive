@@ -130,3 +130,6 @@ app/Config/credentials.json
 
 # Database files
 /writable/database/arsip_paspor.sql
+
+# Testing SSL
+test_ssl.php

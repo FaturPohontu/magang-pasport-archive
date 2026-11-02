@@ -22,7 +22,13 @@ class AdminSeeder extends Seeder
         }
 
         // Ganti password ini dengan password kuat milikmu
-        $password = 'Fatur1405';
+        $password = env('ADMIN_INITIAL_PASSWORD');
+
+        if (! is_string($password) || strlen($password) < 12) {
+            throw new \RuntimeException(
+                'ADMIN_INITIAL_PASSWORD belum diatur atau kurang dari 12 karakter.'
+            );
+        }
 
         $userModel->insert([
             'username'      => 'admin',
@@ -30,7 +36,7 @@ class AdminSeeder extends Seeder
                 $password,
                 PASSWORD_DEFAULT
             ),
-            'nama'          => 'Fatur',
+            'nama'          => 'Administrator',
             'role'          => 'admin',
         ]);
 
