@@ -1,4 +1,3 @@
-```php
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
@@ -136,7 +135,6 @@
 
                 </div>
 
-
                 <!-- Video kamera -->
                 <video
                     id="webcam"
@@ -144,8 +142,7 @@
                     playsinline
                     class="scan-webcam"
                     style="display: none;"
-                ></video>
-
+                ></video> 
 
                 <!-- Canvas untuk mengambil foto -->
                 <canvas
@@ -169,36 +166,74 @@
 
             </div>
 
+            <!-- =====================================
+                PREVIEW FOTO SEMENTARA
+            ====================================== -->
+            <div
+                id="pendingPreviewContainer"
+                class="border rounded-3 p-3 mb-4"
+                style="display: none;"
+            >
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i class="bi bi-eye text-primary"></i>
+                    <h6 class="mb-0 fw-semibold">Periksa Foto Sebelum Konfirmasi</h6>
+                </div>
+
+                <div class="text-center mb-3">
+                    <img
+                        id="pendingPhotoPreview"
+                        src=""
+                        alt="Preview foto resi"
+                        class="img-fluid rounded border"
+                        style="
+                            max-height: 350px;
+                            width: 100%;
+                            object-fit: contain;
+                            background: #f8f9fa;
+                        "
+                    >
+                </div>
+
+                <p class="text-muted small mb-3">
+                    Pastikan tulisan terlihat jelas, gambar tidak buram,
+                    dan seluruh bagian resi masuk ke dalam foto.
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="confirmCapturedPhoto()"
+                    >
+                        <i class="bi bi-check-circle me-1"></i>
+                        Konfirmasi Foto
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-danger"
+                        onclick="retakePhoto()"
+                    >
+                        <i class="bi bi-arrow-repeat me-1"></i>
+                        Retake / Ambil Ulang
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <span id="photoCounter" class="badge bg-info text-dark p-2">Foto Terkumpul: 0/5</span>
+            </div>
 
             <!-- =====================================
                  PREVIEW HASIL FOTO
             ====================================== -->
-            <div
-                id="previewContainer"
-                class="scan-preview-container mb-4"
-                style="display: none;"
-            >
-
+            <div id="previewContainer" class="scan-preview-container mb-4" style="display: none;">
                 <div class="d-flex align-items-center gap-2 mb-3">
-
                     <i class="bi bi-image text-primary"></i>
-
-                    <h6 class="mb-0 fw-semibold">
-                        Hasil Foto
-                    </h6>
-
+                    <h6 class="mb-0 fw-semibold">Daftar Foto Resi (Maksimal 5)</h6>
                 </div>
-
-                <div class="scan-preview-image-wrapper">
-
-                    <img
-                        id="photoPreview"
-                        class="scan-photo-preview"
-                        alt="Hasil foto resi permohonan paspor"
-                    >
-
-                </div>
-
+            <!-- Bungkus thumbnail foto -->
+                <div id="thumbnailList" class="d-flex flex-wrap gap-2"></div>
             </div>
 
 
@@ -271,262 +306,52 @@
     </section>
 
 
-    <!-- =========================================
-         SECTION 2: VERIFIKASI DATA
-    ========================================== -->
-    <section class="card scan-card mb-4">
+<!-- =========================================
+     SECTION 2: VERIFIKASI DATA (TABEL INTERAKTIF)
+     ========================================= -->
+<section class="card scan-card mb-4">
 
-        <div class="card-header scan-card-header">
-
-            <div class="d-flex align-items-center gap-3">
-
-                <div class="scan-card-icon scan-card-icon-gold">
-                    <i class="bi bi-clipboard-check"></i>
-                </div>
-
-                <div>
-
-                    <h5 class="mb-1">
-                        2. Verifikasi Data Hasil Scan
-                    </h5>
-
-                    <p class="mb-0">
-                        Pastikan seluruh informasi sesuai dengan resi asli.
-                    </p>
-
-                </div>
-
+    <div class="card-header scan-card-header">
+        <div class="d-flex align-items-center gap-3">
+            <div class="scan-card-icon scan-card-icon-gold">
+                <i class="bi bi-clipboard-check"></i>
             </div>
+            <div>
+                <h5 class="mb-1">
+                    2. Verifikasi Data Hasil Scan (Tabel Editable)
+                </h5>
+                <p class="mb-0">
+                    Periksa dan edit langsung data di bawah ini sebelum disimpan ke Spreadsheet.
+                </p>
+            </div>
+        </div>
+    </div>
 
+    <div class="card-body p-3 p-md-4">
+
+        <!-- Informasi verifikasi -->
+        <div class="alert alert-primary scan-info-alert d-flex gap-3 align-items-start mb-3">
+            <i class="bi bi-info-circle-fill mt-1"></i>
+            <div>
+                <div class="fw-semibold mb-1">
+                    Tabel Validasi Batch OCR
+                </div>
+                <small>
+                    Hasil OCR dari foto-foto yang Anda ambil akan muncul di sini dalam bentuk tabel. Anda dapat mengoreksi langsung sel teks yang kurang sesuai.
+                </small>
+            </div>
         </div>
 
-
-        <div class="card-body p-3 p-md-4">
-
-            <!-- Informasi verifikasi -->
-            <div
-                class="alert alert-primary scan-info-alert d-flex gap-3 align-items-start"
-            >
-
-                <i class="bi bi-info-circle-fill mt-1"></i>
-
-                <div>
-
-                    <div class="fw-semibold mb-1">
-                        Periksa kembali hasil pemindaian
-                    </div>
-
-                    <small>
-                        Periksa data di bawah ini. Lengkapi atau koreksi
-                        jika pembacaan OCR kurang tepat.
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <!-- FORM VERIFIKASI DAN PENYIMPANAN -->
-            <form
-                action="<?= base_url('scan/save') ?>"
-                method="post"
-                id="scanForm"
-            >
-
-                <?= csrf_field() ?>
-
-
-                <!-- BARIS DATA -->
-                <div class="row g-4 mb-4">
-
-
-                    <!-- KODE PERMOHONAN -->
-                    <div class="col-12 col-md-6">
-
-                        <label
-                            for="kode_permohonan"
-                            class="form-label scan-form-label"
-                        >
-                            1. Kode Permohonan
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="kode_permohonan"
-                            id="kode_permohonan"
-                            class="form-control scan-input"
-                            inputmode="numeric"
-                            placeholder="Masukkan kode permohonan"
-                            required
-                        >
-
-                        <div class="form-text">
-                            Masukkan kode permohonan sesuai resi.
-                        </div>
-
-                    </div>
-
-
-                    <!-- NAMA BILLING -->
-                    <div class="col-12 col-md-6">
-
-                        <label
-                            for="nama_billing"
-                            class="form-label scan-form-label"
-                        >
-                            2. Nama Billing
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="nama_billing"
-                            id="nama_billing"
-                            class="form-control scan-input"
-                            placeholder="Masukkan nama billing"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- TANGGAL LAHIR -->
-                    <div class="col-12 col-md-6">
-
-                        <label
-                            for="tgl_lahir"
-                            class="form-label scan-form-label"
-                        >
-                            3. Tanggal Lahir
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="date"
-                            name="tgl_lahir"
-                            id="tgl_lahir"
-                            class="form-control scan-input"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- JENIS PERMOHONAN -->
-                    <div class="col-12 col-md-6">
-
-                        <label
-                            for="jenis_permohonan"
-                            class="form-label scan-form-label"
-                        >
-                            4. Jenis Permohonan
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="jenis_permohonan"
-                            id="jenis_permohonan"
-                            class="form-control scan-input"
-                            placeholder="Contoh: BARU"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- TANGGAL CETAK -->
-                    <div class="col-12 col-md-6">
-
-                        <label
-                            for="dicetak_tanggal"
-                            class="form-label scan-form-label"
-                        >
-                            5. Dicetak Tanggal
-                            <span class="text-danger">*</span>
-                        </label>
-
-                        <input
-                            type="date"
-                            name="dicetak_tanggal"
-                            id="dicetak_tanggal"
-                            class="form-control scan-input"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- =================================
-                     HASIL TEKS MENTAH OCR
-                ================================== -->
-                <div class="scan-ocr-section mb-4">
-
-                    <div
-                        class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3"
-                    >
-
-                        <div>
-
-                            <label
-                                for="raw_text"
-                                class="form-label scan-form-label mb-1"
-                            >
-                                Hasil Teks Mentah OCR
-                            </label>
-
-                            <p class="text-muted small mb-0">
-                                Teks yang dibaca oleh sistem dari gambar resi.
-                            </p>
-
-                        </div>
-
-                        <span class="badge text-bg-secondary">
-                            <i class="bi bi-file-text me-1"></i>
-                            Read-only
-                        </span>
-
-                    </div>
-
-                    <textarea
-                        id="raw_text"
-                        class="form-control scan-raw-text"
-                        rows="6"
-                        readonly
-                        placeholder="Hasil pembacaan OCR akan ditampilkan di sini..."
-                    ></textarea>
-
-                </div>
-
-
-                <!-- =================================
-                     TOMBOL SIMPAN DATA
-                ================================== -->
-                <div class="scan-form-footer">
-
-                    <div class="scan-required-note">
-                        <span class="text-danger">*</span>
-                        Wajib diisi
-                    </div>
-
-                    <button
-                        type="submit"
-                        class="btn btn-success scan-btn scan-save-btn"
-                    >
-                        <i class="bi bi-cloud-arrow-up-fill me-2"></i>
-                        Simpan ke Spreadsheet
-                    </button>
-
-                </div>
-
-            </form>
-
+        <!-- CONTAINER KOSONG TEMPAT TABEL HASIL OCR AKAN MUNCUL -->
+        <div id="container-tabel-validasi">
+            <p class="text-muted text-center py-4 fst-italic">
+                Belum ada data. Silakan ambil foto dan jalankan proses OCR terlebih dahulu.
+            </p>
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
     <!-- =========================================
@@ -556,7 +381,7 @@
 <!-- =============================================
      JAVASCRIPT HALAMAN SCAN
 ============================================== -->
-<script src="<?= base_url('js/scan.js') ?>?v=2"></script>
+<script src="<?= base_url('js/scan.js') ?>?v=3"></script>
 
 
 <?= $this->endSection() ?>

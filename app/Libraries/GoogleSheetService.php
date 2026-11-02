@@ -14,13 +14,12 @@ class GoogleSheetService
     public function __construct()
     {
         // Masukkan Spreadsheet ID milik Anda di sini
-        $this->spreadsheetId = '1fczya0xbScChjNh3Ji7UHOdvJm9yCt9QaG6qvAS_7IY'; 
+        $this->spreadsheetId = env('GOOGLE_SHEETS_SPREADSHEET_ID');
+        // $this->spreadsheetId = ''; 
 
         $client = new Client();
         $client->setApplicationName('Passport OCR System');
         $client->setScopes([Sheets::SPREADSHEETS]);
-        
-        $client->setHttpClient(new \GuzzleHttp\Client(['verify' => false]));
 
         // Path ke file credentials.json
         $credentialsPath = APPPATH . 'Config/credentials.json';
@@ -38,7 +37,6 @@ class GoogleSheetService
 
             array_unshift($dataRow, ''); // Menambahkan nilai kosong di awal array
 
-            // Urutan array $dataRow disesuaikan dengan urutan kolom di Spreadsheet:
             // [Kode Permohonan, Nama Billing, Tanggal Lahir, Jenis Permohonan, Dicetak Tanggal]
             $body = new ValueRange([
             'values' => [array_values($dataRow)]
@@ -48,7 +46,6 @@ class GoogleSheetService
                 'valueInputOption' => 'USER_ENTERED' // Agar tanggal/angka terformat otomatis di Sheets
             ];
 
-            // 'Sheet1' adalah nama tab/sheet di spreadsheet Anda
             $range = 'Sheet1!B:F'; 
 
             $this->service->spreadsheets_values->append(
@@ -57,8 +54,8 @@ class GoogleSheetService
                 $body,
                 $params
             );
-
             return true;
+
         } catch (\Exception $e) {
             log_message('error', 'Google Sheet Error: ' . $e->getMessage());
             return false;
