@@ -51,6 +51,10 @@
                     <span>📷</span> Scan & Input Paspor
                 </a>
 
+                <a href="<?= base_url('arsip') ?>" class="sidebar-link">
+                    <span>📁</span> Arsip Data Paspor
+                </a>
+                
                 <hr class="border-light opacity-25">
 
                 <a href="<?= base_url('logout') ?>"

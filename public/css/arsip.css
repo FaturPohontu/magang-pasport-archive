@@ -1,0 +1,174 @@
+
+/* =================================
+   HALAMAN ARSIP DATA PASPOR
+================================= */
+
+.arsip-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 28px 40px;
+    min-width: 0;
+}
+
+.arsip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.arsip-header h2 {
+    margin: 0 0 7px;
+    color: #10234d;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.arsip-header p {
+    margin: 0;
+    color: #7b8498;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* KARTU TABEL */
+
+.arsip-card {
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #e9edf5;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(20, 39, 80, 0.05);
+}
+
+/* PENCARIAN */
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 0;
+}
+
+.search-form .form-control {
+    min-height: 43px;
+    border-color: #dce3ed;
+    font-size: 0.88rem;
+}
+
+.search-form .btn {
+    min-height: 43px;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+/* TABEL */
+
+.arsip-card .table {
+    margin-bottom: 0;
+    font-size: 0.84rem;
+    white-space: nowrap;
+}
+
+.arsip-card .table thead th {
+    padding: 15px 12px;
+    background: #f3f6fc;
+    color: #344563;
+    font-weight: 700;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.arsip-card .table tbody td {
+    padding: 15px 12px;
+    color: #526079;
+    border-bottom-color: #edf0f5;
+}
+
+.arsip-card .table tbody tr:hover {
+    background: #f8faff;
+}
+
+.arsip-card .table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.empty-data {
+    padding: 35px !important;
+    color: #8790a2 !important;
+}
+
+/* PAGINATION */
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+.pagination {
+    margin-bottom: 0;
+}
+
+.pagination .page-link {
+    color: #2458cc;
+}
+
+.pagination .active > .page-link {
+    background: #2458cc;
+    border-color: #2458cc;
+    color: #fff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .arsip-wrapper {
+        padding: 20px 14px 30px;
+    }
+
+    .arsip-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .arsip-card {
+        padding: 16px;
+    }
+
+    .search-form {
+        flex-wrap: wrap;
+    }
+
+    .search-input {
+        flex-basis: 100%;
+    }
+
+    .pagination-wrapper {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .arsip-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .arsip-header p {
+        font-size: 0.8rem;
+    }
+
+    .arsip-card {
+        padding: 12px;
+    }
+
+    .search-form .btn {
+        flex: 1;
+    }
+}

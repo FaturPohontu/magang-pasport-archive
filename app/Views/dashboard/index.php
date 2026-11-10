@@ -70,57 +70,49 @@
         </div>
 
         <div class="stats-grid">
-
             <!-- CARD 1 -->
-            <div class="stat-card card-gold">
-                <div class="stat-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8">
-                        <rect x="5" y="3" width="14" height="18" rx="2"/>
-                        <path d="M9 7h6M9 11h6M9 15h3"/>
-                    </svg>
-                </div>
-
-                <div class="stat-content">
-                    <p class="stat-txt">Paspor Hari Ini</p>
-                    <div class="stat-val">0</div>
-                    <span class="stat-note">Data paspor yang dipindai hari ini</span>
-                </div>
-            </div>
-
-            <!-- CARD 2 -->
-            <div class="stat-card card-teal">
-                <div class="stat-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8">
-                        <circle cx="9" cy="8" r="3"/>
-                        <path d="M3 20v-2a6 6 0 0 1 12 0v2"/>
-                        <circle cx="17" cy="9" r="2.5"/>
-                        <path d="M17 15a4 4 0 0 1 4 4v1"/>
-                    </svg>
-                </div>
-
-                <div class="stat-content">
-                    <p class="stat-txt">Kategori Pemohon</p>
-
-                    <div class="wni-wna-box">
-                        <div class="category-item">
-                            <span>WNI</span>
-                            <strong>0</strong>
-                        </div>
-
-                        <div class="category-divider"></div>
-
-                        <div class="category-item">
-                            <span>WNA</span>
-                            <strong>0</strong>
-                        </div>
+                <div class="stat-card card-gold">
+                    <div class="stat-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8">
+                            <rect x="5" y="3" width="14" height="18" rx="2"/>
+                            <path d="M9 7h6M9 11h6M9 15h3"/>
+                        </svg>
                     </div>
 
-                    <span class="stat-note">Jumlah berdasarkan kategori pemohon</span>
+                    <div class="stat-content">
+                        <p class="stat-txt">Paspor Hari Ini</p>
+                        <div class="stat-val">
+                            <?= number_format($scanHariIni, 0, ',', '.') ?>
+                        </div>
+                        <span class="stat-note">Data paspor yang dipindai hari ini</span>
+                    </div>
+                </div>
+
+            <!-- CARD 2 -->
+                <div class="stat-card card-teal">
+                    <div class="stat-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8">
+                            <circle cx="9" cy="8" r="3"/>
+                            <path d="M3 20v-2a6 6 0 0 1 12 0v2"/>
+                            <circle cx="17" cy="9" r="2.5"/>
+                            <path d="M17 15a4 4 0 0 1 4 4v1"/>
+                        </svg>
+                    </div>
+
+                <div class="stat-content">
+                    <p class="stat-txt">Total Arsip Paspor</p>
+
+                    <div class="stat-val">
+                        <?= number_format($totalArsip, 0, ',', '.') ?>
+                    </div>
+
+                    <span class="stat-note">
+                        Jumlah seluruh arsip yang tersimpan di database
+                    </span>
                 </div>
             </div>
-
             <!-- CARD 3 -->
             <div class="stat-card card-blue">
                 <div class="stat-icon" aria-hidden="true">
@@ -132,12 +124,16 @@
                 </div>
 
                 <div class="stat-content">
-                    <p class="stat-txt">Total Pemindaian Tahun 2026</p>
-                    <div class="stat-val">0</div>
-                    <span class="stat-note">Akumulasi pemindaian paspor tahun 2026</span>
+                    <p class="stat-txt">
+                        Total Pemindaian Tahun <?= esc($tahunIni) ?>
+                    </p>
+                    <div class="stat-val">
+                        <?= number_format($scanTahunIni, 0, ',', '.') ?>
+                    </div>
+                    <span class="stat-note">
+                        Akumulasi arsip paspor tahun <?= esc($tahunIni) ?>
+                    </span>
                 </div>
-            </div>
-
         </div>
     </div>
 
