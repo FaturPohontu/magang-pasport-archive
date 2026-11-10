@@ -10,7 +10,7 @@ $routes->get('logout', 'AuthController::logout');
 
 $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('dashboard', 'DashboardController::index');
-    
+    $routes->get('arsip', 'ArsipController::index');
     // Fitur Scan Resi & Input Paspor
     $routes->get('scan', 'HomeController::index');                   // Halaman utama scan/form
     $routes->post('scan/process-ocr', 'HomeController::processOcr');  // Endpoint kirim foto -> balikkan teks OCR
@@ -18,4 +18,5 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->post('scan/process-batch', 'HomeController::processBatch'); 
     $routes->post('scan/save-batch', 'HomeController::saveBatch');
     $routes->get('users', 'UserController::index');
+    
 });
