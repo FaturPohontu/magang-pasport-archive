@@ -38,30 +38,45 @@
 
         <div class="user-info">
             <small>Login sebagai</small>
-            <strong><?= esc(session()->get('name') ?? 'Pengguna') ?></strong>
+            <strong><?= esc(session()->get('nama') ?? 'Pengguna') ?></strong>
+            <small><?= esc(ucfirst(session()->get('role') ?? '')) ?></small>
         </div>
 
         <div class="offcanvas-body">
             <nav class="sidebar-nav">
+
                 <a href="<?= base_url('dashboard') ?>" class="sidebar-link">
                     <span>📊</span> Dashboard
                 </a>
 
-                <a href="<?= base_url('scan') ?>" class="sidebar-link">
-                    <span>📷</span> Scan & Input Paspor
-                </a>
+                <?php if (session()->get('role') === 'petugas'): ?>
+
+                    <a href="<?= base_url('scan') ?>" class="sidebar-link">
+                        <span>📷</span> Scan & Input Paspor
+                    </a>
+
+                <?php endif; ?>
 
                 <a href="<?= base_url('arsip') ?>" class="sidebar-link">
                     <span>📁</span> Arsip Data Paspor
                 </a>
-                
+
+                <?php if (session()->get('role') === 'admin'): ?>
+
+                    <a href="<?= base_url('users') ?>" class="sidebar-link">
+                        <span>👥</span> Manajemen Petugas
+                    </a>
+
+                <?php endif; ?>
+
                 <hr class="border-light opacity-25">
 
                 <a href="<?= base_url('logout') ?>"
-                   class="sidebar-link"
-                   onclick="return confirm('Yakin ingin keluar?')">
+                class="sidebar-link"
+                onclick="return confirm('Yakin ingin keluar?')">
                     <span>🚪</span> Logout
                 </a>
+
             </nav>
         </div>
 

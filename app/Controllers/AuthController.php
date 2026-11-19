@@ -43,6 +43,12 @@ class AuthController extends BaseController
                 ->with('error', 'Username atau password salah.');
         }
 
+        if ((int) $user['is_active'] !== 1) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Akun Anda tidak aktif, hubungi admin');
+        }
+
         // Regenerasi session setelah autentikasi berhasil
         session()->regenerate();
 
