@@ -5,7 +5,7 @@ namespace App\Database\Seeds;
 use CodeIgniter\Database\Seeder;
 use App\Models\UserModel;
 
-class AdminSeeder extends Seeder
+class PetugasSeeder extends Seeder
 {
     public function run()
     {
@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
 
         // Hindari membuat akun admin duplikat
         $adminSudahAda = $userModel
-            ->where('username', 'admin')
+            ->where('username', 'petugas')
             ->first();
 
         if ($adminSudahAda) {
@@ -22,24 +22,25 @@ class AdminSeeder extends Seeder
         }
 
         // Ganti password ini dengan password kuat milikmu
-        $password = env('ADMIN_INITIAL_PASSWORD');
+        $password = env('PETUGAS_INITIAL_PASSWORD');
 
         if (! is_string($password) || strlen($password) < 12) {
             throw new \RuntimeException(
-                'ADMIN_INITIAL_PASSWORD belum diatur atau kurang dari 12 karakter.'
+                'PETUGAS_INITIAL_PASSWORD belum diatur atau kurang dari 12 karakter.'
             );
         }
 
         $userModel->insert([
-            'username'      => 'admin',
+            'username'      => 'petugas',
             'password_hash' => password_hash(
                 $password,
                 PASSWORD_DEFAULT
             ),
-            'nama'          => 'Administrator',
-            'role'          => 'admin',
+            'nama'          => 'Petugas',
+            'role'          => 'petugas',
+            'is_active'     => 1,
         ]);
 
-        echo "Akun admin berhasil dibuat.\n";
+        echo "Akun petugas berhasil dibuat.\n";
     }
 }

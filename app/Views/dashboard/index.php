@@ -51,10 +51,10 @@
         <div class="welcome-box">
             <p class="welcome-label">Selamat Datang,</p>
             <h1 class="welcome-name">
-                <?= esc(session()->get('name') ?? 'Pengguna') ?>
+                <?= esc(session()->get('nama')) ?>
             </h1>
             <p class="welcome-description">
-                Berikut ringkasan data arsip paspor Anda.
+                Berikut ringkasan data arsip paspor.
             </p>
         </div>
     </div>
