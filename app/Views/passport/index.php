@@ -381,7 +381,7 @@
 <!-- =============================================
      JAVASCRIPT HALAMAN SCAN
 ============================================== -->
-<script src="<?= base_url('js/scan.js') ?>?v=3"></script>
+<script src="<?= base_url('js/scan.js') ?>?v=4"></script>
 
 
 <?= $this->endSection() ?>

@@ -83,17 +83,29 @@
 
                             <tr>
                                 <td><?= $nomor++ ?></td>
-
+                                <!-- Kolom yang boleh kosong -->
                                 <td>
-                                    <strong>
-                                        <?= esc($arsip['kode_permohonan']) ?>
-                                    </strong>
+                                    <?php if ($arsip['kode_permohonan'] === 'TIDAK ADA DATA'): ?>
+                                        <span class="badge bg-danger">
+                                            TIDAK ADA DATA
+                                        </span>
+                                    <?php else: ?>
+                                        <strong>
+                                            <?= esc($arsip['kode_permohonan']) ?>
+                                        </strong>
+                                    <?php endif; ?>
                                 </td>
 
                                 <td>
-                                    <?= esc($arsip['nama_billing']) ?>
+                                    <?php if ($arsip['nama_billing'] === 'TIDAK ADA DATA'): ?>
+                                        <span class="badge bg-danger">
+                                            TIDAK ADA DATA
+                                        </span>
+                                    <?php else: ?>
+                                        <?= esc($arsip['nama_billing']) ?>
+                                    <?php endif; ?>
                                 </td>
-
+                                <!-- ============================================================== -->
                                 <td>
                                     <?= ! empty($arsip['tgl_lahir'])
                                         ? date('d-m-Y', strtotime($arsip['tgl_lahir']))
