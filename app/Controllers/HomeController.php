@@ -167,7 +167,10 @@ class HomeController extends BaseController
         };
 
         // Validasi seluruh data sebelum menyimpannya.
+        
+        // Validasi seluruh data sebelum menyimpannya.
         foreach ($rows as $index => $row) {
+
             if (!is_array($row)) {
                 return $this->response->setStatusCode(422)->setJSON([
                     'status'  => 'error',
@@ -179,15 +182,32 @@ class HomeController extends BaseController
             $nama = trim((string) ($row['nama_billing'] ?? ''));
             $jenis = trim((string) ($row['jenis_permohonan'] ?? ''));
 
-            $tglLahir = $normalizeDate($row['tgl_lahir'] ?? '');
-            $tglCetak = $normalizeDate($row['dicetak_tanggal'] ?? '');
+            // Kolom teks yang kosong diberi keterangan.
+            if ($kode === '') {
+                $kode = 'TIDAK ADA DATA';
+            }
 
+            if ($nama === '') {
+                $nama = 'TIDAK ADA DATA';
+            }
+
+            // Tanggal lahir wajib tersedia dan valid.
+            $tglLahir = $normalizeDate($row['tgl_lahir'] ?? '');
+
+            // Tanggal cetak boleh kosong.
+            $rawTglCetak = trim((string) ($row['dicetak_tanggal'] ?? ''));
+
+            $tglCetak = null;
+
+            if ($rawTglCetak !== '') {
+                $tglCetak = $normalizeDate($rawTglCetak);
+            }
+
+            // Validasi data wajib.
             if (
-                $kode === '' ||
-                $nama === '' ||
                 $jenis === '' ||
                 $tglLahir === false ||
-                $tglCetak === false
+                ($rawTglCetak !== '' && $tglCetak === false)
             ) {
                 return $this->response->setStatusCode(422)->setJSON([
                     'status'  => 'error',
@@ -196,6 +216,7 @@ class HomeController extends BaseController
                 ]);
             }
 
+            // Validasi panjang karakter.
             if (
                 strlen($kode) > 100 ||
                 strlen($nama) > 150 ||
@@ -280,7 +301,7 @@ class HomeController extends BaseController
                 $data['nama_billing'],
                 $data['tgl_lahir'],
                 $data['jenis_permohonan'],
-                $data['dicetak_tanggal']
+                $data['dicetak_tanggal'] ?? '-'
             ];
 
             try {
