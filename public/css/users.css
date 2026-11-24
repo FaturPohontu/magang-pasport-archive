@@ -1,0 +1,292 @@
+
+/* =====================================
+   HALAMAN MANAJEMEN PETUGAS
+   SIPASKANIM
+===================================== */
+
+/* JUDUL HALAMAN */
+
+.users-title {
+    color: #08245e;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.users-description {
+    color: #7b8498;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.users-table-title {
+    color: #08245e;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+
+/* TOMBOL UTAMA */
+
+.btn-brand {
+    background-color: #061f63;
+    color: #fff;
+    border: 1px solid #061f63;
+    border-radius: 9px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-brand:hover {
+    background-color: #0b48bd;
+    border-color: #0b48bd;
+    color: #fff;
+}
+
+.btn-brand:focus {
+    box-shadow: 0 0 0 0.2rem rgba(11, 72, 189, 0.2);
+}
+
+
+/* TOMBOL RESET */
+
+.btn-reset {
+    background-color: #fff;
+    color: #526079;
+    border: 1px solid #dce3ed;
+    border-radius: 9px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.btn-reset:hover {
+    background-color: #f1f4f9;
+    color: #061f63;
+    border-color: #b9c7dc;
+}
+
+
+/* KARTU */
+
+.users-card {
+    background-color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 5px 22px rgba(20, 39, 80, 0.06);
+    overflow: hidden;
+}
+
+
+/* PENCARIAN */
+
+.users-search {
+    min-height: 43px;
+    border-color: #dce3ed;
+    border-radius: 0 9px 9px 0;
+    font-size: 0.88rem;
+}
+
+.users-card .input-group-text {
+    color: #536782;
+    border-color: #dce3ed;
+    border-radius: 9px 0 0 9px;
+}
+
+.users-search:focus {
+    border-color: #2458cc;
+    box-shadow: 0 0 0 0.15rem rgba(36, 88, 204, 0.1);
+}
+
+
+/* TABEL */
+
+.table-users {
+    font-size: 0.84rem;
+    white-space: nowrap;
+}
+
+.table-users thead th {
+    background-color: #f1f5fc;
+    color: #102b5c;
+    font-weight: 700;
+    padding: 15px 13px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.table-users tbody td {
+    color: #526079;
+    padding: 15px 13px;
+    border-bottom-color: #edf0f5;
+}
+
+.table-users tbody tr:hover {
+    background-color: #f5f8ff;
+}
+
+.table-users tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-users tbody strong {
+    color: #263449;
+    font-weight: 600;
+}
+
+
+/* BADGE STATUS */
+
+.table-users .badge {
+    font-size: 0.73rem;
+    font-weight: 600;
+    padding: 7px 10px;
+    border-radius: 6px;
+}
+
+
+/* TOMBOL AKSI */
+
+.table-users .btn-outline-danger {
+    border-radius: 7px;
+    font-size: 0.8rem;
+    padding: 6px 11px;
+}
+
+
+/* PAGINATION */
+
+.users-pagination .pagination {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.users-pagination .pagination > li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.users-pagination .pagination > li > a,
+.users-pagination .pagination > li > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #dce3ed;
+    border-radius: 9px;
+    background: #fff;
+    color: #08245e;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.users-pagination .pagination > li > a:hover {
+    background: #edf3ff;
+    border-color: #b9c7dc;
+    color: #0b48bd;
+}
+
+.users-pagination .pagination > li.active > a,
+.users-pagination .pagination > li.active > span {
+    background: #061f63;
+    border-color: #061f63;
+    color: #fff;
+}
+
+.users-pagination .pagination > li.disabled > a,
+.users-pagination .pagination > li.disabled > span {
+    background: #f5f6f8;
+    border-color: #e1e7f0;
+    color: #aab2c0;
+}
+
+
+/* MODAL */
+
+#modalTambahPetugas .modal-content {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+#modalTambahPetugas .modal-header,
+#modalTambahPetugas .modal-footer {
+    border-color: #edf0f5;
+}
+
+#modalTambahPetugas .modal-title {
+    color: #08245e;
+}
+
+#modalTambahPetugas .form-control {
+    min-height: 43px;
+    border-color: #dce3ed;
+    border-radius: 8px;
+    font-size: 0.88rem;
+}
+
+#modalTambahPetugas .form-control:focus {
+    border-color: #2458cc;
+    box-shadow: 0 0 0 0.15rem rgba(36, 88, 204, 0.1);
+}
+
+#modalTambahPetugas .form-label {
+    color: #263449;
+    font-size: 0.88rem;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .users-title {
+        font-size: 1.25rem;
+    }
+
+    .users-description {
+        font-size: 0.83rem;
+    }
+
+    .users-card .card-body {
+        padding: 16px !important;
+    }
+
+    .btn-brand,
+    .btn-reset {
+        font-size: 0.85rem;
+        padding: 9px 13px;
+    }
+
+    .table-users {
+        font-size: 0.8rem;
+    }
+
+    .table-users thead th,
+    .table-users tbody td {
+        padding: 12px 10px;
+    }
+
+    .users-pagination .pagination {
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .users-pagination .pagination > li > a,
+    .users-pagination .pagination > li > span {
+        min-width: 40px;
+        height: 42px;
+        padding: 0 10px;
+        font-size: 0.82rem;
+    }
+}
