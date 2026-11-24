@@ -1,3 +1,9 @@
+/* =========================================================
+   SIPASKANIM - HALAMAN SCAN RESI PASPOR
+   Bootstrap 5 + Custom CSS
+   Desain dipertahankan, responsivitas dirapikan
+========================================================= */
+
 
 /* =========================================================
    1. VARIABEL WARNA DAN PENGATURAN DASAR
@@ -53,8 +59,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 20px;
 
+    gap: 20px;
     width: 100%;
     margin-bottom: 24px;
 }
@@ -108,8 +114,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
 
+    flex: 0 0 auto;
     padding: 9px 13px;
 
     border: 1px solid #d9e7ff;
@@ -160,11 +166,11 @@
 
 .scan-progress-step {
     display: flex;
+    flex: 0 1 auto;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 
-    flex: 0 1 auto;
     min-width: 75px;
     gap: 8px;
 
@@ -254,7 +260,6 @@
     min-width: 0;
 
     margin-bottom: 24px;
-
     overflow: hidden;
 
     border: 1px solid var(--scan-border);
@@ -318,7 +323,7 @@
 
 /* =========================================================
    5. AREA KAMERA
-   Default laptop: portrait 3:4
+   Laptop: lebih lebar dengan rasio landscape 16:9
 ========================================================= */
 
 .scan-page .scan-camera-wrapper {
@@ -329,20 +334,18 @@
     justify-content: center;
 
     width: 100%;
-    max-width: 480px;
+    max-width: 1000px;
     min-width: 0;
 
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 16 / 9;
     min-height: 0;
 
     margin: 0 auto 24px;
-
     overflow: hidden;
 
     border: 1px solid #c8d5e8;
     border-radius: 16px;
 
-    background: #07101f;
 }
 
 /* Video stream kamera */
@@ -351,15 +354,6 @@
     z-index: 1;
 
     display: block;
-
-    width: 100%;
-    height: 100%;
-
-    max-width: none;
-    max-height: none;
-
-    object-fit: contain;
-    background: #07101f;
 }
 
 /* Placeholder sebelum kamera aktif */
@@ -488,7 +482,8 @@
    7. PREVIEW HASIL FOTO
 ========================================================= */
 
-.scan-preview-container {
+.scan-preview-container,
+.scan-page #previewContainer {
     width: 100%;
     max-width: 650px;
     min-width: 0;
@@ -502,7 +497,8 @@
     background: #f9fbff;
 }
 
-.scan-preview-container h6 {
+.scan-preview-container h6,
+.scan-page #previewContainer h6 {
     color: var(--scan-dark);
 }
 
@@ -523,7 +519,8 @@
     background: #ffffff;
 }
 
-.scan-photo-preview {
+.scan-photo-preview,
+.scan-page #photoPreview {
     display: block;
 
     width: 100%;
@@ -538,7 +535,8 @@
    8. TOMBOL AKSI
 ========================================================= */
 
-.scan-page .scan-camera-actions {
+.scan-page .scan-camera-actions,
+.scan-page .scan-actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -583,14 +581,14 @@
     outline-offset: 2px;
 }
 
-/* Tombol biru */
+/* Tombol biru khusus halaman scan */
 .scan-page .btn-primary {
     border-color: var(--scan-navy);
     background: var(--scan-navy);
     color: #ffffff;
 }
 
-.scan-page .btn-primary:hover {
+.scan-page .btn-primary:hover:not(:disabled) {
     border-color: #061f5d;
     background: #061f5d;
     color: #ffffff;
@@ -603,7 +601,7 @@
     color: #342300;
 }
 
-.scan-page .btn-warning:hover {
+.scan-page .btn-warning:hover:not(:disabled) {
     border-color: #efaa20;
     background: #efaa20;
     color: #342300;
@@ -772,7 +770,6 @@
     justify-content: space-between;
 
     gap: 16px;
-
     padding-top: 22px;
 
     border-top: 1px solid var(--scan-border);
@@ -805,60 +802,66 @@
         padding: 18px 20px;
     }
 
-    .scan-page .scan-progress-section {
+    .scan-progress-section {
         padding: 20px;
+    }
+
+    /* Kamera tetap lebar, tetapi mengikuti ruang yang tersedia */
+    .scan-page .scan-camera-wrapper {
+        max-width: 100%;
     }
 }
 
 
 /* =========================================================
-   14. RESPONSIVE HP
+   14. RESPONSIVE HP DAN TABLET KECIL
 ========================================================= */
 
-@media (max-width: 575.98px) {
-
-    /* Konten halaman */
+@media (max-width: 767.98px) {
+    /* Halaman */
     .scan-page {
-        padding: 14px;
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
     }
 
     /* Header */
-    .scan-page .scan-page-header {
+    .scan-page-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 14px;
     }
 
-    .scan-page .scan-page-title {
+    .scan-page-title {
         font-size: 1.4rem;
     }
 
-    .scan-page .scan-page-description {
+    .scan-page-description {
         font-size: 0.87rem;
     }
 
-    .scan-page .scan-status-badge {
+    .scan-status-badge {
         font-size: 0.75rem;
     }
 
     /* Kartu */
-    .scan-page .scan-card {
+    .scan-card {
         border-radius: 12px;
     }
 
-    .scan-page .scan-card-header {
+    .scan-card-header {
         padding: 16px;
     }
 
-    .scan-page .scan-card-header h5 {
+    .scan-card-header h5 {
         font-size: 0.92rem;
     }
 
-    .scan-page .scan-card-header p {
+    .scan-card-header p {
         font-size: 0.78rem;
     }
 
-    .scan-page .scan-card-icon {
+    .scan-card-icon {
         flex-basis: 42px;
         width: 42px;
         height: 42px;
@@ -866,15 +869,19 @@
         font-size: 18px;
     }
 
-    /* Kamera landscape 16:9 */
+    /* Kamera HP: tetap besar dan nyaman digunakan */
     .scan-page .scan-camera-wrapper {
         width: 100%;
-        max-width: none;
+        max-width: 100%;
 
-        aspect-ratio: 16 / 9;
-        min-height: 0;
+        height: 72vh;
+        min-height: 380px;
+        max-height: 650px;
 
-        border-radius: 12px;
+        aspect-ratio: auto;
+
+        margin: 0 auto 20px;
+        border-radius: 14px;
     }
 
     .scan-page .scan-webcam {
@@ -884,9 +891,10 @@
         max-width: none;
         max-height: none;
 
-        object-fit: contain;
+        object-fit: cover;
     }
 
+    /* Placeholder kamera */
     .scan-page .scan-camera-placeholder {
         padding: 12px;
     }
@@ -898,7 +906,6 @@
         margin-bottom: 10px;
 
         border-radius: 14px;
-
         font-size: 23px;
     }
 
@@ -911,106 +918,139 @@
         font-size: 0.75rem;
     }
 
-    /* Tombol foto bulat */
+    /* Tombol ambil foto */
     .scan-page .scan-capture-button {
-        bottom: 10px;
+        bottom: 16px;
 
         width: 56px;
         height: 56px;
         min-width: 56px;
 
         border-width: 4px;
-
         font-size: 23px;
     }
 
-    /* Tombol aksi memenuhi lebar HP */
-    .scan-page .scan-camera-actions {
+    /* Tombol kamera dan OCR */
+    .scan-page .scan-camera-actions,
+    .scan-page .scan-actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .scan-page .scan-camera-actions .scan-btn {
+    .scan-page .scan-camera-actions .scan-btn,
+    .scan-page .scan-actions .scan-btn {
         width: 100%;
     }
 
     /* Preview foto */
-    .scan-page .scan-preview-container {
+    .scan-preview-container,
+    .scan-page #previewContainer {
         padding: 14px;
     }
 
-    .scan-page .scan-photo-preview {
+    .scan-photo-preview,
+    .scan-page #photoPreview {
         max-height: 350px;
     }
 
     /* Indikator proses */
-    .scan-page .scan-progress-section {
+    .scan-progress-section {
         padding: 16px 10px;
     }
 
-    .scan-page .scan-progress-title {
+    .scan-progress-title {
         margin-bottom: 20px;
         font-size: 15px;
     }
 
-    .scan-page .scan-progress-step {
-        min-width: 0;
+    .scan-progress-step {
         flex: 1 1 0;
-
+        min-width: 0;
         gap: 6px;
-
         font-size: 10px;
     }
 
-    .scan-page .scan-progress-number {
+    .scan-progress-number {
         flex-basis: 30px;
         width: 30px;
         height: 30px;
-
         font-size: 12px;
     }
 
-    .scan-page .scan-progress-line {
+    .scan-progress-line {
         flex: 1 1 auto;
         min-width: 5px;
-
         margin: 0 3px 22px;
     }
 
     /* Formulir */
-    .scan-page .scan-form-label {
+    .scan-form-label {
         font-size: 0.85rem;
     }
 
-    .scan-page .scan-input {
+    .scan-input {
         min-height: 44px;
         font-size: 0.88rem;
     }
 
     /* Teks OCR */
-    .scan-page .scan-ocr-section {
+    .scan-ocr-section {
         padding: 14px;
     }
 
-    .scan-page .scan-raw-text {
+    .scan-raw-text {
         min-height: 130px;
         font-size: 0.8rem;
     }
 
     /* Footer formulir */
-    .scan-page .scan-form-footer {
+    .scan-form-footer {
         align-items: stretch;
         flex-direction: column;
     }
 
-    .scan-page .scan-save-btn {
+    .scan-save-btn {
         width: 100%;
     }
 }
 
 
 /* =========================================================
-   15. AKSESIBILITAS
+   15. HP DENGAN LAYAR SANGAT KECIL
+========================================================= */
+
+@media (max-width: 400px) {
+    .scan-page {
+        padding: 8px;
+    }
+
+    .scan-card-header {
+        padding: 12px;
+    }
+
+    .scan-page .scan-camera-wrapper {
+        height: 60vh;
+        min-height: 340px;
+    }
+
+    .scan-page .scan-progress-section {
+        padding: 14px 8px;
+    }
+
+    .scan-page .scan-progress-step {
+        font-size: 9px;
+    }
+
+    .scan-page .scan-progress-line {
+        min-width: 3px;
+        margin-right: 2px;
+        margin-left: 2px;
+    }
+}
+
+
+/* =========================================================
+   16. AKSESIBILITAS
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1023,114 +1063,25 @@
         transition-duration: 0.01ms !important;
     }
 }
-/* =========================================
-   MEMPERBESAR LAYAR KAMERA DI HP
-========================================= */
 
-@media (max-width: 767.98px) {
-
-    /* Kurangi jarak tepi halaman */
-    .scan-page {
-        width: 100%;
-        max-width: 100%;
-        padding: 12px !important;
-        margin: 0;
-    }
-
-    /* Kurangi padding card agar area kamera lebih luas */
-    .scan-card,
-    .scan-camera-card {
-        width: 100%;
-        max-width: 100%;
-        padding: 12px !important;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    /* Area kamera memenuhi lebar container */
-    .scan-camera-wrapper {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 65vh !important;
-        min-height: 380px !important;
-        max-height: 650px;
-        aspect-ratio: auto !important;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-        border-radius: 14px;
-    }
-
-    /* Tampilan video kamera */
-    .scan-webcam {
-        width: 100% !important;
-        height: 100% !important;
-        max-width: none !important;
-        object-fit: cover !important;
-        display: block;
-    }
-
-    /* Placeholder sebelum kamera dibuka */
-    .scan-camera-placeholder {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Tombol ambil foto tetap di tengah */
-    #btnCapture {
-        position: absolute;
-        left: 50%;
-        bottom: 16px;
-        transform: translateX(-50%);
-        z-index: 5;
-    }
-
-    /* Tombol kontrol menggunakan lebar yang tersedia */
-    .scan-camera-actions,
-    .scan-actions {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .scan-camera-actions button,
-    .scan-actions button {
-        flex: 1 1 auto;
-        min-height: 44px;
-    }
-
-    /* Preview foto mengikuti lebar layar */
-    #previewContainer {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    #photoPreview {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
+/* Area kamera sebagai acuan posisi tombol */
+.scan-camera-wrapper {
+    position: relative;
+    overflow: hidden;
 }
 
-/* HP dengan layar sangat kecil */
-@media (max-width: 400px) {
-    .scan-page {
-        padding: 8px !important;
-    }
+/* Tombol flash di pojok kanan atas kamera */
+.scan-flash-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    padding: 8px 14px;
+    font-weight: 600;
+    border: none;
+}
 
-    .scan-card,
-    .scan-camera-card {
-        padding: 8px !important;
-    }
-
-    .scan-camera-wrapper {
-        height: 60vh !important;
-        min-height: 340px !important;
-    }
+/* Efek ketika flash aktif */
+.scan-flash-button.btn-warning {
+    color: #212529;
 }

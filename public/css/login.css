@@ -1,19 +1,79 @@
 
-/* ===== PENGATURAN DASAR ===== */
-*,
-*::before,
-*::after {
+/* =================================
+   PENGATURAN DASAR
+================================= */
+
+:root {
+    --navy: #011852;
+    --navy-dark: #000d2e;
+    --navy-medium: #032b85;
+    --blue: #0a54d6;
+    --blue-light: #65baff;
+    --white: #ffffff;
+    --gray: #64748b;
+}
+
+* {
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 
 html {
-    width: 100%;
-    min-height: 100%;
-    margin: 0;
+    scroll-behavior: smooth;
 }
 
 body {
+    margin: 0;
+    color: #263449;
+    background: var(--white);
+}
+
+/* =================================
+   NAVBAR
+================================= */
+
+.navbar {
+    background: var(--white);
+}
+
+.navbar-brand,
+.navbar .nav-link {
+    color: var(--navy);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--blue);
+}
+
+/* =================================
+   TOMBOL
+================================= */
+
+.btn-navy {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    transition: .3s;
+}
+
+.btn-navy:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+/* =================================
+   HERO SECTION
+================================= */
+
+.hero-section {
+    position: relative;
+    overflow: hidden;
+
     background: radial-gradient(
         circle at center,
         #0a54d6 0%,
@@ -21,216 +81,169 @@ body {
         #011852 100%
     );
 
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    margin: 0;
-    padding: 20px 0;
-
+    min-height: 585px;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    position: relative;
-    overflow-x: clip;
+}
+.hero-description {
+    color: #d2e3ff;
 }
 
-/* ===== WATERMARK LOGO ===== */
-body::before {
-    content: '';
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* WATERMARK LOGO */
 
-    width: min(650px, 90vw);
-    height: min(650px, 90vw);
+.hero-section::before {
+    content: '';
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    top: 50%;
+    left: 30%;
+
+    transform: translate(-50%, -50%);
 
     background-image: url('../img/logo-imigrasi.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 
-    opacity: 0.15;
+    opacity: .07;
     pointer-events: none;
-    z-index: 0;
 }
 
-/* ===== PEMBUNGKUS UTAMA ===== */
-.login-wrapper {
-    width: 100%;
-    max-width: 440px;
-    min-width: 0;
-
-    padding: 20px;
-    margin: auto;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+.hero-section .container {
     position: relative;
     z-index: 1;
 }
 
-/* ===== HEADER ===== */
-.header-box {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 24px;
+.hero-section h1 {
+    color: var(--white);
 }
 
-.header-box img {
-    display: block;
-    width: 85px;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto 12px;
+.hero-highlight {
+    color: var(--blue-light);
 }
 
-.header-box h4 {
-    font-weight: 700;
-    margin: 0 0 4px;
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-    overflow-wrap: anywhere;
+.hero-section .text-navy {
+    color: var(--white);
 }
 
-.header-box p {
-    margin: 0;
-    font-size: 0.82rem;
-    font-weight: 300;
-    opacity: 0.85;
-    overflow-wrap: anywhere;
+.hero-section .text-secondary {
+    color: #d2e3ff;
 }
 
-/* ===== KARTU LOGIN ===== */
+.hero-badge {
+    background: rgba(255,255,255,.12);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,.3);
+}
+
+/* =================================
+   LOGIN CARD
+================================= */
+
 .login-card {
-    background: #ffffff;
+    width: 100%;
+    max-width: 460px;
+
+    background: var(--white);
     border-radius: 16px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-
-    padding: 32px 28px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
 }
 
-/* ===== JUDUL ===== */
-.text-navy {
-    color: #0a1b4d;
+.login-card .form-control {
+    border-color: #d4deee;
+    padding: 11px;
 }
 
-/* ===== LABEL FORM ===== */
-.form-label {
-    color: #0a1b4d;
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin-bottom: 6px;
-    display: block;
+.login-card .input-group-text {
+    border-color: #d4deee;
+    color: var(--navy);
 }
 
-/* ===== INPUT ===== */
-.custom-input {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-
-    background-color: #edf3fe !important;
-    border: 1.5px solid #2860c8 !important;
-    border-radius: 8px !important;
-
-    padding: 10px 14px !important;
-    font-size: 0.9rem !important;
-    color: #0a1b4d !important;
+.login-card .form-control:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 .2rem rgba(10,84,214,.15);
 }
 
-.custom-input:focus {
-    background-color: #ffffff !important;
-    border-color: #0a1b4d !important;
-    box-shadow: 0 0 0 0.2rem rgba(10, 27, 77, 0.2) !important;
-    outline: none;
+.login-card h4 {
+    color: var(--navy);
 }
 
-/* ===== TOMBOL MASUK ===== */
-.btn-navy {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-
-    background-color: #0a1b4d !important;
-    color: #ffffff !important;
-    border: none !important;
-    border-radius: 8px !important;
-
-    padding: 12px !important;
-    font-weight: 700 !important;
-    font-size: 0.9rem !important;
-    letter-spacing: 0.5px;
-
-    cursor: pointer;
-    margin-top: 10px;
+.login-description {
+    color: var(--gray);
 }
 
-.btn-navy:hover {
-    background-color: #050d28 !important;
+/* =================================
+   INFORMASI SISTEM
+================================= */
+
+#informasi {
+    background: #f5f5f5;
 }
 
-/* ===== RESPONSIVE HP ===== */
+#informasi .feature-title {
+    color: var(--navy);
+}
+
+#informasi p {
+    color: var(--gray);
+}
+
+#informasi .bi {
+    color: #233e54;
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+.footer-section {
+    background: var(--navy-dark);
+    border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.footer-links li {
+    color: #bdc9df;
+}
+
+.footer-links a {
+    color: #bdc9df;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 10px;
+    transition: .2s;
+}
+
+.footer-links a:hover {
+    color: var(--blue-light);
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 991px) {
+    .hero-section {
+        min-height: auto;
+    }
+
+    .hero-section::before {
+        left: 50%;
+        width: 350px;
+        height: 350px;
+    }
+}
+
 @media (max-width: 576px) {
-    body {
-        padding: 16px 0;
-        align-items: center;
+    .hero-section h1 {
+        font-size: 2rem;
     }
 
-    .login-wrapper {
-        width: 100%;
-        max-width: 100%;
-        padding: 16px;
-        margin: auto;
-    }
-
-    .header-box {
-        margin-bottom: 20px;
-    }
-
-    .header-box img {
-        width: 72px;
-    }
-
-    .header-box h4 {
-        font-size: 1.2rem;
-    }
-
-    .header-box p {
-        font-size: 0.75rem;
-    }
-
-    .login-card {
-        padding: 24px 20px;
-        border-radius: 14px;
-    }
-
-    .login-card h4 {
-        font-size: 1.15rem;
-    }
-}
-
-/* ===== HP DENGAN LAYAR SANGAT KECIL ===== */
-@media (max-width: 360px) {
-    .login-wrapper {
-        padding: 12px;
-    }
-
-    .login-card {
-        padding: 20px 16px;
-    }
-
-    .header-box p {
-        font-size: 0.7rem;
+    .hero-section {
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }

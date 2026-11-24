@@ -1,5 +1,8 @@
-
 <?= $this->extend('layouts/main') ?>
+
+<?= $this->section('styles') ?>
+<link rel="stylesheet" href="<?= base_url('css/users.css') ?>">
+<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
@@ -7,60 +10,84 @@
 $validationErrors = session()->getFlashdata('validation') ?? [];
 ?>
 
-<div class="container-fluid px-0">
+<!-- HEADER HALAMAN -->
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
 
-    <!-- Header halaman -->
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-        <div>
-            <h4 class="fw-bold mb-1">Manajemen Petugas</h4>
-            <p class="text-secondary mb-0">
-                Kelola akun pengguna dengan hak akses Petugas.
-            </p>
-        </div>
-
-        <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#modalTambahPetugas">
-            + Tambah Petugas
-        </button>
+    <div>
+        <h4 class="users-title mb-1">Manajemen Petugas</h4>
+        <p class="users-description mb-0">
+            Kelola akun pengguna dengan hak akses Petugas.
+        </p>
     </div>
 
+    <button
+        type="button"
+        class="btn btn-brand"
+        data-bs-toggle="modal"
+        data-bs-target="#modalTambahPetugas">
+
+        <i class="bi bi-person-plus me-2"></i>
+        Tambah Petugas
+    </button>
+
+</div>
     <!-- Pencarian -->
-    <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body">
-            <form action="<?= base_url('users') ?>" method="get">
-                <div class="row g-2">
-                    <div class="col-md-9">
-                        <input
-                            type="text"
-                            name="q"
-                            class="form-control"
-                            placeholder="Cari nama atau username petugas..."
-                            value="<?= esc($keyword ?? '') ?>">
-                    </div>
+    <!-- PENCARIAN -->
+<div class="card users-card border-0 mb-4">
+    <div class="card-body p-3 p-md-4">
 
-                    <div class="col-md-3 d-grid">
-                        <button type="submit" class="btn btn-outline-primary">
-                            Cari Petugas
-                        </button>
-                    </div>
+        <form action="<?= base_url('users') ?>" method="get" class="row g-2">
+
+            <div class="col-12 col-md">
+                <div class="input-group">
+                    <span class="input-group-text bg-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+
+                    <input
+                        type="text"
+                        name="q"
+                        class="form-control users-search"
+                        placeholder="Cari nama atau username petugas..."
+                        value="<?= esc($keyword ?? '') ?>">
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="col-6 col-md-auto">
+                <button type="submit" class="btn btn-brand w-100">
+                    <i class="bi bi-search me-1"></i>
+                    Cari
+                </button>
+            </div>
+
+            <?php if (! empty($keyword)): ?>
+                <div class="col-6 col-md-auto">
+                    <a href="<?= base_url('users') ?>" class="btn btn-reset w-100">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i>
+                        Reset
+                    </a>
+                </div>
+            <?php endif; ?>
+
+        </form>
+
     </div>
+</div>
 
     <!-- Tabel Petugas -->
-    <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white py-3">
-            <h6 class="fw-bold mb-0">Daftar Akun Petugas</h6>
+    <!-- TABEL PETUGAS -->
+    <div class="card users-card border-0">
+
+        <div class="card-header bg-white border-0 px-3 px-md-4 pt-4 pb-3">
+            <h6 class="users-table-title mb-0">Daftar Akun Petugas</h6>
         </div>
 
         <div class="card-body p-0">
+
             <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
+                <table class="table table-hover align-middle table-users mb-0">
+
+                    <thead>
                         <tr>
                             <th class="ps-3">No.</th>
                             <th>Nama Petugas</th>
@@ -154,12 +181,31 @@ $validationErrors = session()->getFlashdata('validation') ?? [];
         </div>
 
         <!-- Pagination -->
-        <?php if ($pager->getPageCount() > 1): ?>
-            <div class="card-footer bg-white">
-                <?= $pager->links() ?>
-            </div>
-        <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
     </div>
+
+    <!-- PAGINATION -->
+    <?php if ($pager->getPageCount() > 1): ?>
+        <div class="card-footer bg-white border-0 px-3 px-md-4 py-3">
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+
+                <small class="text-secondary">
+                    Halaman <?= $pager->getCurrentPage() ?>
+                    dari <?= $pager->getPageCount() ?>
+                </small>
+
+                <div class="users-pagination">
+                    <?= $pager->links() ?>
+                </div>
+
+            </div>
+
+        </div>
+    <?php endif; ?>
 
 </div>
 
@@ -285,14 +331,15 @@ $validationErrors = session()->getFlashdata('validation') ?? [];
 
                 <div class="modal-footer">
                     <button
-                        type="button"
-                        class="btn btn-light"
-                        data-bs-dismiss="modal">
-                        Batal
+                    type="button"
+                    class="btn btn-reset"
+                    data-bs-dismiss="modal">
+                    Batal
                     </button>
 
-                    <button type="submit" class="btn btn-primary">
-                        Simpan Petugas
+                    <button type="submit" class="btn btn-brand">
+                    <i class="bi bi-check-circle me-1"></i>
+                    Simpan Petugas
                     </button>
                 </div>
 
